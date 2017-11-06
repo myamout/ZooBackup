@@ -7,9 +7,8 @@
    *If you are running Mac OS then just use Homebrew to install Elasticsearch and MongoDB*
    *To install MongoDB on Ubuntu see the install page at: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/*
 4. Run the command `yarn build` to bundle all of the React files
-5. Run the script `./startdbs.sh` to start up all of the databases
-6. Run the command `yarn server` to start the server: go to `localhost:8080`
-7. When done running the server run the script `./stopdbs.sh`
+5. Run the script `./startdbs.sh` to start up all of the databases and run the server
+6. When done running the server run the script `./stopdbs.sh`
 
 # Notes
 + App is using Node + Express for the server and React on the frontend
