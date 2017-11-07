@@ -32,7 +32,13 @@ export default class Edit extends Component {
     async handleCanEdit(event) {
         event.preventDefault;
         const data = JSON.stringify({
-            animalName: this.state.animalName
+            name: this.state.animal.name,
+            identification: this.state.animal.identification,
+            age: this.state.animal.age,
+            species: this.state.animal.species,
+            food: this.state.animal.food,
+            health: this.state.animal.health,
+            sex: this.state.animal.sex
         });
         try {
             let response = await fetch(`/api/exists?name=${this.state.animalName}`, {
@@ -58,7 +64,13 @@ export default class Edit extends Component {
     async handleAnimalUpdate(event) {
         event.preventDefault();
         let data = JSON.stringify({
-            animalData: this.state.animal
+            name: this.state.animal.name,
+            identification: this.state.animal.identification,
+            age: this.state.animal.age,
+            species: this.state.animal.species,
+            food: this.state.animal.food,
+            health: this.state.animal.health,
+            sex: this.state.animal.sex
         });
         try {
             let response = await fetch('/api/edit', {
@@ -120,7 +132,7 @@ export default class Edit extends Component {
                 age: age,
                 species: this.state.animal.species,
                 food: this.state.animal.food,
-                heath: this.state.animal.health,
+                health: this.state.animal.health,
                 sex: this.state.animal.sex
             }
         });

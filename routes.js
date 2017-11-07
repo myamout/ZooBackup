@@ -2,6 +2,7 @@ import express from 'express';
 // import all of our crud operations
 import CrudOperations from './crud';
 import elasticsearch from 'elasticsearch';
+import Animal from "./models/animal";
 
 const router = express.Router();
 const client = new elasticsearch.Client({
@@ -9,7 +10,7 @@ const client = new elasticsearch.Client({
 });
 
 client.ping({
-    requestTimeout: 1000
+    requestTimeout: 2000
 }, ((error) => {
     if (error) {
         console.log('[-] Could not connect to Elastic Cluster at localhost:9200');
@@ -69,9 +70,28 @@ router.get('/exists', (req, res) => {
     });
 });
 
+// Edit route can be fixed to encapsulate the mongo update
+// like all the other crud functions
 router.put('/edit', (req, res) => {
-    console.log(req.body);
-    res.send({ success: true });
+    let data = req.body;
+    let query = data.identification;
+    client.index({
+        index: 'animals',
+        type: 'animal',
+        id: data.identification,
+        body: data
+    }, ((err, response) => {
+        if (err) {
+            console.log('[-] Unable to edit animal in Elasticsearch cluster');
+        }
+    }));
+    Animal.findOneAndUpdate(query, data, { upsert: true}, ((err, response) => {
+        if (err) {
+           res.send({ success: false });
+        } else {
+            res.send({ success: true });
+        }
+    }));
 });
 
 // Export the routes so the server can use them

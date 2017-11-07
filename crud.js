@@ -61,6 +61,7 @@ let CrudOperations = {
         };
         return Animal.find(query);
     },
+    // Still need to update elastic client when edited
     editAnimal: function(data) {
         
     }

@@ -65,6 +65,8 @@
 - Styling the SearchKit components to make the view.jsx look nice. See "http://docs.searchkit.co/stable/" for docs.
 - Editing and deleting an animal still need to be implemented on the front and back end. See crud.js for an example of
     using this with Mongo and Elastic. Note that Editing and deletling an animal need to also be reflected in the Elastic cluster. See the addAnimal function in crud.js for an example of this.
+- Adding deletion of animals (this can be done on the edit page)
+- Edit forms in edit.jsx to prevent someone from editing an animals identification number
 
 # Notes
 - I did all of this on Ubuntu, anyone on Mac OS doesn't need to add sudo I believe, it's been a while.

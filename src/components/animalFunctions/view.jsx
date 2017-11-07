@@ -14,6 +14,7 @@ import {
     SearchkitProvider
     } from "searchkit";
 
+// Connects SearchKit to our Elastic cluster animal index
 const searchkit = new SearchkitManager('http://localhost:9200/animals');
 
 export default class View extends Component {
