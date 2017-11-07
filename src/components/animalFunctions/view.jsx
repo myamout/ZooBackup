@@ -65,7 +65,7 @@ class Search extends SearchkitComponent {
                 <div className="cards"> 
                     <Hits hitsPerPage={5}
                         mod={'sk-hits-grid'}
-                        itemComponent={HitItems}
+                        listComponent={HitItems}
                     />
                 </div>
                 <HitsStats />
@@ -81,12 +81,30 @@ class HitItems extends Component {
     }
 
     render() {
+        const animalData = this.props.hits;
+        const listItems = animalData.map((hit) => 
+            <tr key={hit._source.identification}> 
+                <td>{hit._source.name}</td>
+                <td>{hit._source.species}</td>
+                <td>{hit._source.age}</td>
+            </tr>
+        );
         return(
-            <div className="card">
-                <h5 className="card-header"> {this.props.result._source.name} </h5>
-                <p className="card-content"> </p>
-                <div className="card-footer center text-center"> <p> Footer </p> </div>
-            </div>
+            <div style={{width: '100%', boxSizing: 'border-box', padding: 8}}>
+            <table className="sk-table sk-table-striped" style={{width: '100%', boxSizing: 'border-box'}}>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Species</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listItems}
+              </tbody>
+            </table>
+          </div>
         );
     }
 }

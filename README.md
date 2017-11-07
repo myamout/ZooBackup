@@ -25,6 +25,7 @@
 7. Turn off Mongo using `sudo -i service mongodb stop`. Make sure to exit the mongo shell first with `Crtl + D`
 
 # Install and Setup Elasticsearch
+- Note that before you begin you need to make sure you have at least Java 8 installed
 1. Run the script `sudo ./installdbs.sh` to install Elasticsearch
 2. Start Elastic by running: `sudo -i service elasticsearch start`
 3. Create the animals index and mapping by using the command:
@@ -62,9 +63,7 @@
 
 # What Needs To Be Done
 - Styling the four main views for the user
-- Styling the SearchKit components to make the view.jsx look nice. See "http://docs.searchkit.co/stable/" for docs.
-- Editing and deleting an animal still need to be implemented on the front and back end. See crud.js for an example of
-    using this with Mongo and Elastic. Note that Editing and deletling an animal need to also be reflected in the Elastic cluster. See the addAnimal function in crud.js for an example of this.
+- Style the table created by the Elastic index -> see SearchKit documentation for more components
 - Adding deletion of animals (this can be done on the edit page)
 - Edit forms in edit.jsx to prevent someone from editing an animals identification number
 
