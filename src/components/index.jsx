@@ -4,7 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { App } from './app.jsx';
 
-// Renders
+// Renders our Application with the router to
+// the div with id "root" in our user.html page
 render((
     <BrowserRouter>
         <App />

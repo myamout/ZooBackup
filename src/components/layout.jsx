@@ -7,6 +7,8 @@ import View from './animalFunctions/view.jsx';
 import Add from './animalFunctions/add.jsx';
 import Edit from './animalFunctions/edit.jsx';
 
+// Layout renders the needed component based on
+// what link is clicked on the header component
 export const Layout = () => (
     <main>
         <Switch>

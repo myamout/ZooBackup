@@ -15,7 +15,6 @@ import {
     } from "searchkit";
 
 const searchkit = new SearchkitManager('http://localhost:9200/animals');
-// const searchkit = new SearchkitManager("http://demo.searchkit.co/api/movies");
 
 export default class View extends Component {
 

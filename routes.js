@@ -1,19 +1,34 @@
 import express from 'express';
 // import all of our crud operations
 import CrudOperations from './crud';
+import elasticsearch from 'elasticsearch';
 
 const router = express.Router();
+const client = new elasticsearch.Client({
+    host: 'localhost:9200'
+});
+
+client.ping({
+    requestTimeout: 1000
+}, ((error) => {
+    if (error) {
+        console.log('[-] Could not connect to Elastic Cluster at localhost:9200');
+    } else {
+        console.log('[+] Connected to Elastic Cluster at localhost:9200');
+    }
+}));
 
 // If the user does a post request to "/api/add"
 // this function is called
 router.post('/add', (req, res) => {
     // The "addAnimal" function returns a promise,
     // all this route does is execute the promise
-    let animalEntry = CrudOperations.addAnimal(req.body);
+    let animalEntry = CrudOperations.addAnimal(req.body, client);
     // If the animal was successfully added
     // then we can send a json object back to the frontend
     animalEntry.then((response) => {
         res.send({success: true});
+
     }).catch((error) => {
         // if the animal wasn't added print out the error
         // and send a json object back to the frontend

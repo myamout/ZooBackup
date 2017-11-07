@@ -18,7 +18,7 @@ let CrudOperations = {
     },
     // Inserts a new animal into the animals collection 
     // in the Zoo database. Returns the promise
-    addAnimal: function(data) {
+    addAnimal: function(data, elastic_client) {
         let animal = new Animal({
             name: data.animalName,
             identification: data.identification,
@@ -28,6 +28,25 @@ let CrudOperations = {
             health: data.health,
             sex: data.sex
         });
+        // This will insert our animal into our Elasticsearch cluster
+        elastic_client.create({
+            index: 'animals',
+            type: 'animal',
+            id: data.identification,
+            body: {
+                name: data.animalName,
+                identification: data.identification,
+                age: data.age,
+                species: data.species,
+                food: data.food,
+                health: data.health,
+                sex: data.sex
+            }
+        }, ((error, response) => {
+            if (error) {
+                console.log('[-] Error inserting animal into Elastic Cluster');
+            }
+        }));
         return animal.save();
     },
     // Grabs all animals inside of the "animals" collection in

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+// Header renders out our navigation bar and links together
+// all of our four main components
 export const Header = () => (
     <div>
         <header>
