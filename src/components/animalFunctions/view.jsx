@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import {
     SearchBox,
-    RefinementListFilter,
     Hits,
     HitsStats,
     SearchkitComponent,
-    SelectedFilters,
-    MenuFilter,
-    HierarchicalMenuFilter,
-    Pagination,
-    ResetFilters,
     SearchkitManager, 
-    SearchkitProvider
+    SearchkitProvider,
+    Layout,
+    TopBar,
+    LayoutBody,
+    LayoutResults,
+    SideBar,
+    HierarchicalMenuFilter,
+    RefinementListFilter,
+    ActionBar,
+    ActionBarRow,
+    SelectedFilters,
+    ResetFilters,
+    NoHits,
+    Pagination
     } from "searchkit";
 
 // Connects SearchKit to our Elastic cluster animal index
@@ -27,28 +34,43 @@ export default class View extends Component {
     }
 
     async componentWillMount() {
-        let response = await fetch('/api/view', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        let responseData = await response.json();
-        let animalData = responseData.animals;
-        this.setState({ animals: animalData });
-        console.log(this.state.animals);
+        
     }
     
     render() {
         return(
             <div>
                 <h1> View animals in database here </h1>
-                <SearchkitProvider searchkit={searchkit}>
-                    <div>
-                        <Search />
+                <div className="row"> 
+                    <div className="col"> 
+                        <SearchkitProvider searchkit={searchkit}>
+                            <Layout>
+                                <LayoutBody>
+                                    <SideBar>
+                                        <HierarchicalMenuFilter fields={["age.raw", "food.raw", "sex.raw"]} title="Filters" id="filters" />
+                                        <RefinementListFilter id="species" title="Species" field="species.raw" operator="AND" size={10} />
+                                    </SideBar>
+                                    <LayoutResults> 
+                                        <ActionBar> 
+                                            <ActionBarRow> <HitsStats /> </ActionBarRow>
+                                            <ActionBarRow> <SelectedFilters /> <ResetFilters /> </ActionBarRow>
+                                        </ActionBar>
+                                        <div className="search"> 
+                                            <Search />
+                                        </div>
+                                        <Hits hitsPerPage={5} mod={'sk-hits-list'} listComponent={HitItems} />
+                                        <NoHits translations={{
+                                            "NoHits.NoResultsFound" : "No matches found for {query}",
+                                            "NoHits.DidYouMean" : "Search for {suggestion}",
+                                            "NoHits.SearchWithoutFilters" : "Search for {query} without filters"
+                                        }} suggestionsField="name" />
+                                    </LayoutResults>
+                                    <Pagination showNumbers={true} />
+                                </LayoutBody>
+                            </Layout>
+                        </SearchkitProvider>
                     </div>
-                </SearchkitProvider>
+                </div>
             </div>
         );
     }
@@ -58,18 +80,9 @@ export default class View extends Component {
 class Search extends SearchkitComponent {
     render() {
         return(
-            <div> 
-                <SearchBox searchkit={searchkit}
-                    searchOnChange={true}
-                     />
-                <div className="cards"> 
-                    <Hits hitsPerPage={5}
-                        mod={'sk-hits-grid'}
-                        listComponent={HitItems}
-                    />
-                </div>
-                <HitsStats />
-            </div>
+            <SearchBox searchkit={searchkit}
+            searchOnChange={true}
+            queryOptions={{analyzer: 'standard'}} />
         );
     }
 }
@@ -77,7 +90,6 @@ class Search extends SearchkitComponent {
 class HitItems extends Component {
     constructor(props) {
         super();
-        console.log(props);
     }
 
     render() {
@@ -94,7 +106,6 @@ class HitItems extends Component {
             <table className="sk-table sk-table-striped" style={{width: '100%', boxSizing: 'border-box'}}>
               <thead>
                 <tr>
-                  <th></th>
                   <th>Name</th>
                   <th>Species</th>
                   <th>Age</th>

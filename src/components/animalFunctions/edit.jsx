@@ -157,7 +157,13 @@ export default class Edit extends Component {
         let food = event.target.value;
         this.setState({
             animal: {
-                food: food
+                name: this.state.animal.name,
+                identification: this.state.animal.identification,
+                age: this.state.animal.age,
+                species: species,
+                food: food,
+                health: this.state.animal.health,
+                sex: this.state.animal.sex
             }
         });
     }
