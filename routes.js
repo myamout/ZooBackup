@@ -1,14 +1,14 @@
 import express from 'express';
-// import all of our crud operations
 import CrudOperations from './crud';
 import elasticsearch from 'elasticsearch';
-import Animal from "./models/animal";
 
 const router = express.Router();
+// connect to our elasticsearch cluster
 const client = new elasticsearch.Client({
     host: 'localhost:9200'
 });
 
+// Test to make sure the cluster is active
 client.ping({
     requestTimeout: 2000
 }, ((error) => {
@@ -19,80 +19,118 @@ client.ping({
     }
 }));
 
-// If the user does a post request to "/api/add"
-// this function is called
+// Adds an animal to the database
 router.post('/add', (req, res) => {
-    // The "addAnimal" function returns a promise,
-    // all this route does is execute the promise
-    let animalEntry = CrudOperations.addAnimal(req.body, client);
-    // If the animal was successfully added
-    // then we can send a json object back to the frontend
-    animalEntry.then((response) => {
-        res.send({success: true});
-
-    }).catch((error) => {
-        // if the animal wasn't added print out the error
-        // and send a json object back to the frontend
-        console.log(error);
-        res.send({success: false});
-    });
-});
-
-// If the frontend calls "/api/view"
-// we'll run this route's operations
-router.get('/view', (req, res) => {
-    // save the promise returned by "getAnimals" into
-    // animalList variable
-    let animalList = CrudOperations.getAnimals();
-    // Execute the promise
-    animalList.exec((err, animals) => {
-        // If there was an error send json object with error to frontend
-        if (err) {
-            res.send({animals: "error fetching animal list"});
-        } else {
-            // If success send aniaml array to frontend
-            res.send({animals: animals });
-        }
-    });
-});
-
-router.get('/exists', (req, res) => {
-    let animalExists = CrudOperations.animalExists(req['query']['name']);
-    animalExists.exec((err, animals) => {
-        if (err) {
-            res.send({ success: false });
-        } else if (animals.length === 1) {
-            res.send({
-                success: true,
-                animal: animals[0]
-             });
-        }
-    });
-});
-
-// Edit route can be fixed to encapsulate the mongo update
-// like all the other crud functions
-router.put('/edit', (req, res) => {
-    let data = req.body;
-    let query = data.identification;
-    client.index({
+    console.log(req.body);
+    let count;
+    // First we need to get the current count of animals
+    // This is the id that will be assigned to the animal
+    client.get({
         index: 'animals',
-        type: 'animal',
-        id: data.identification,
-        body: data
+        type: 'id_count',
+        id: 1
     }, ((err, response) => {
         if (err) {
-            console.log('[-] Unable to edit animal in Elasticsearch cluster');
-        }
-    }));
-    Animal.findOneAndUpdate(query, data, { upsert: true}, ((err, response) => {
-        if (err) {
-           res.send({ success: false });
+            res.send({ success: false });
         } else {
-            res.send({ success: true });
+            // Get the count and increment it
+            count = response._source.count + 1;
+            // Insert the animal document into the index with type animal
+            client.index({
+                index: 'animals',
+                type: 'animal',
+                id: count,
+                body: req.body
+            }, ((err, response) => {
+                if (err) {
+                    res.send({ success: false });
+                } else {
+                    // Save the new count back into the index
+                    client.index({
+                        index: 'animals',
+                        type: 'id_count',
+                        id: 1,
+                        body: {
+                            count: count
+                        }
+                    }, ((err, response) => {
+                        if (err) {
+                            res.send({ success: false });
+                        } else {
+                            // Send the success
+                            res.send({ success: true });
+                        }
+                    }));
+                }
+            }));
         }
     }));
 });
+
+// Checks if the animal document exists in the index
+// If it does send back the animal object to edit
+// Queries the animal index by animal name -> remember each animal gets a unique name
+router.get('/exists', (req, res) => {
+    const query = 'name:'+req['query']['name'];
+    client.search({
+        index: 'animals',
+        q: query
+    }, ((err, response) => {
+        if (err) {
+            res.send({ success: false });
+        }
+        res.send({
+            success: true,
+            animal: response.hits.hits[0]._source
+        });
+    }));
+});
+
+// Updates the animal document after the user has edited it
+router.post('/update', (req, res) => {
+    let query = 'name:'+req.body.name;
+    client.search({
+        index: 'animals',
+        q: query
+    }, ((err, response) => {
+        if (err) {
+            res.send({ success: false });
+        }
+        client.index({
+            index: 'animals',
+            type: 'animal',
+            id: response.hits.hits[0]._id,
+            body: req.body
+        }, ((err, response) => {
+            if (err) {
+                res.send({ success: false });
+            } else {
+                res.send({ success: true });
+            }
+        }));
+    }));
+});
+
+// Deletes the animal document based by animal name
+router.post('/delete', (req, res) => {
+    let query = 'name:'+req.body.name;
+    client.search({
+        index: 'animals',
+        q: query
+    }, ((err, response) => {
+        if (err) { res.send({ success: false })}
+        else {
+            client.delete({
+                index: 'animals',
+                type: 'animal',
+                id: response.hits.hits[0]._id
+            }, ((err, response) => {
+                if (err) { res.send({ success: false })}
+                else { res.send({ success: true })}
+            }));
+        }
+    }));
+})
 
 // Export the routes so the server can use them
 module.exports = router;

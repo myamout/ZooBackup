@@ -3,4 +3,3 @@
 // and our Scss file
 import Index from "./components/index.jsx";
 require('./scss/styles.scss');
-require('../node_modules/searchkit/theming/theme.scss');

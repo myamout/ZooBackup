@@ -12,7 +12,7 @@ const User = new Schema({
         required: true
     },
     permissions: {
-        type: String,
+        type: Number,
         required: true
     }
 });

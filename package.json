@@ -7,7 +7,10 @@
   "license": "MIT",
   "scripts": {
     "server": "babel-node --presets es2015,stage-2 server.js",
-    "build": "webpack"
+    "build": "webpack",
+    "build-watch": "webpack -w",
+    "seed-mongo": "babel-node --presets es2015,stage-2 db_utils/create_mongo.js",
+    "seed-elastic": "babel-node --presets es2015,stage-2 db_utils/create_elastic.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -20,9 +23,7 @@
     "mongoose": "^4.13.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-router-dom": "^4.2.2",
-    "searchkit": "^2.2.1-0",
-    "wingcss": "^1.0.0-beta"
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

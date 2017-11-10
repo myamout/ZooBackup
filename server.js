@@ -26,10 +26,10 @@ app.use(session({secret: 'example', resave: false, saveUninitialized: true}));
 app.use(bodyParser());
 // use the api routes specified in routes.js
 app.use('/api', router);
-// serve the css file on this extension
-app.use('/scripts', express.static(__dirname + '/node_modules/wingcss/dist'));
 // serve the react code for the frontend off of this extension
 app.use('/bundledJs', express.static(__dirname + '/dist/js'));
+
+let userPermissions;
 
 // If the current user hasn't logged in we want to block them from accessing the
 // user page where all of our functionality is
@@ -73,6 +73,7 @@ app.post('/login', (req, res, next) => {
         if (user.length === 1) {
             // set the user's session to authenticated
             req.session.authenticated = true;
+            userPermissions = user[0].permissions;
             // redirect the user to "localhost:8080/user"
             res.redirect('/user');
         } else {
@@ -81,6 +82,10 @@ app.post('/login', (req, res, next) => {
             res.redirect('/login');
         }
     });
+});
+
+app.get('/permissions', (req, res, next) => {
+    res.send({permissions: userPermissions});
 });
 
 // Handles the logout route. All we need to do
