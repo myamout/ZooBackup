@@ -19,7 +19,7 @@
     permissions. Note that permission level 1 is the highest, 2 is for a normal keeper
 4. Stop MongoDB by using `sudo -i service mongodb stop`
 
-# Install and Setup Elasticsearch
+# Install and Setup Elasticsearch - If you are using Homebrew on MacOS see below
 - Note that before you begin you need to make sure you have at least Java 8 installed, you can check this by `java -version`. If you have 
     `1.8...` then you're good to go
 1. Download Elasticsearch debian by running `wget --no-check-certificate            
@@ -28,6 +28,11 @@
 3. Start Elasticsearch by running: `sudo -i service elasticsearch start`
 4. Seed Elasticsearch cluster node by running: `yarn seed-elastic`
 5. Stop Elasticsearch by running: `sudo -i service elasticsearch stop`
+
+# Install and Setup Elasticsearch - MacOS
+1. Run the command `brew install elasticsearch`
+2. Run Elasticsearch by running: `brew services start elasticsearch`
+3. Stop Elasticsearch by running: `brew services stop elasticsearch`
 
 # Quick Elasticsearch Primer
 - Elasticsearch uses nodes to store documents, multiple nodes form a cluster. We'll only need one node for this project
