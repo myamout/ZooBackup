@@ -9,16 +9,6 @@ mongoose.connect('mongodb://localhost/zoo', (err, res) => {
     }
 });
 
-mongoose.connection.db.listCollections({name: 'users'})
-    .next((err, response) => {
-        if (response) {
-            mongoose.connection.db.dropCollection('users', (err, response) => {
-                if (err) { console.log(err)}
-                else { console.log('Previously created users collection dropped')}
-            });
-        }
-    });
-
 var seedUser = new User({
     username: 'admin',
     password: 'pass',

@@ -14,6 +14,7 @@
 
 # Install and Setup MongoDB
 1. Go to "https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" and follow the steps
+    - You also need to crete a data folder using this command `mkdir -p /data/db`
 2. Start MongoDB using `sudo -i service mongodb start` (David has told me that mongod is what you'll need to run)
 3. Seed the database by running the command `yarn seed-mongo`. This will add a users collection with an admin and normal user to test 
     permissions. Note that permission level 1 is the highest, 2 is for a normal keeper
@@ -33,6 +34,14 @@
 1. Run the command `brew install elasticsearch`
 2. Run Elasticsearch by running: `brew services start elasticsearch`
 3. Stop Elasticsearch by running: `brew services stop elasticsearch`
+
+# Configure elasticsearch.yml file
+- Lastly to get Elasticsearch running you'll need to open up `/etc/elasticsearch/elasticsearch.yml` in a text editor and add these lines
+    `http.cors.enabled: true
+     http.cors.allow-origin : "*"
+     http.cors.allow-methods : OPTIONS, HEAD, GET, POST, PUT, DELETE
+     http.cors.allow-headers : X-Requested-With,X-Auth-Token,Content-Type, Content-Length
+     action.auto_create_index: true`
 
 # Quick Elasticsearch Primer
 - Elasticsearch uses nodes to store documents, multiple nodes form a cluster. We'll only need one node for this project

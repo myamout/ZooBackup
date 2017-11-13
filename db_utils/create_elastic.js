@@ -14,20 +14,6 @@ client.ping({
     }
 }));
 
-client.indices.exists({
-    index: 'animals'
-}, (err, response) => {
-    if (err) {
-        console.log(err);
-    } else {
-        client.indices.delete({
-            index: 'animals'
-        }, (err, response) => {
-            if (err) { console.log(err)}
-            else { console.log('[+] Animals index deleted')}
-        });
-    }
-});
 
 const animal_index = {
     index: 'animals',
