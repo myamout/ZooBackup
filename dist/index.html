@@ -1,21 +1,100 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign In</title>
-    <link rel="stylesheet" type="text/css" href="/scripts/wing.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign In</title>
+  <style>
+    .login-page {
+      width: 360px;
+      padding: 8% 0 0;
+      margin: auto;
+    }
+
+    .form {
+      position: relative;
+      z-index: 1;
+      background: #FFFFFF;
+      max-width: 360px;
+      margin: 0 auto 100px;
+      padding: 45px;
+      text-align: center;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+    }
+
+    .form input {
+      font-family: "Roboto", sans-serif;
+      outline: 0;
+      background: #f2f2f2;
+      width: 100%;
+      border: 0;
+      margin: 0 0 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .form button {
+      font-family: "Roboto", sans-serif;
+      text-transform: uppercase;
+      outline: 0;
+      background: #76b852;
+      width: 100%;
+      border: 0;
+      padding: 15px;
+      color: #FFFFFF;
+      font-size: 14px;
+      -webkit-transition: all 0.3 ease;
+      transition: all 0.3 ease;
+      cursor: pointer;
+    }
+
+    .form button:hover, .form button:active, .form button:focus {
+      background: #43A047;
+    }
+
+    .logoWorkAround {
+      max-width: 100px;
+      background-image: url('https://cdn.cp.adobe.io/content/2/dcx/3e639bfc-1f49-49be-8e68-6cb0d072ef5a/rendition/preview.jpg/version/0/format/jpg/dimension/width/size/1200');
+      background-size: 100%;
+      position: relative;
+      margin: 0 auto 00px;
+      margin-bottom: 20px;
+      padding: 65px;
+      text-align: center;
+    }
+
+    body {
+      background: #76b852;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+      background: -moz-linear-gradient(right, #76b852, #8DC26F);
+      background: -o-linear-gradient(right, #76b852, #8DC26F);
+      background: linear-gradient(to left, #76b852, #8DC26F);
+      font-family: "Roboto", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
 </head>
+
 <body>
-    <h1> Sign Into The Network </h1>
-    <form method="POST">
-        <label for="username"> Username </label>
-        <input type="text" name="username" placeholder="Enter Username here">
 
-        <label for="password"> Password </label>
-        <input type="password" name="password" placeholder="Enter Password here">
+  <div class="login-page">
 
-        <input type="submit">
-    </form>
+    <div class="form">
+      <div class="logoWorkAround"></div>
+
+      <form method="POST" class="form-signin login-form">
+        <input type="text" name="username" class="form-control" placeholder="Enter Username">
+        <input type="password" name="password" class="form-control" placeholder="Enter Password">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+      </form>
+    </div>
+  </div>
+
 </body>
+
 </html>

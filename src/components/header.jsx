@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export const Header = () => (
     <div>
         <header>
-            <div className="nav">
+            <div className="nav testContainer">
                 <h2 className="nav-logo"> Zoo Management System </h2>
                 <a className="nav-item"> <Link to='/user'> Home </Link> </a>
                 <a className="nav-item"> <Link to='/viewAnimals'> View Animals </Link> </a>

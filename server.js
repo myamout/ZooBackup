@@ -35,14 +35,15 @@ let userPermissions;
 // user page where all of our functionality is
 function checkAuth(req, res, next) {
     if (req.url === '/user' && (!req.session || !req.session.authenticated)) {
-        res.send('unauthorized please sign in', {status: 403});
+        // res.send('unauthorized please sign in', {status: 403});
+        res.redirect('/login'); // redirect to login instead of diplaying error
         return;
     }
     next();
 }
 
 // we want all users to log into the system first
-// so going to "localhost:8080" will just redirect them 
+// so going to "localhost:8080" will just redirect them
 // to "localhost:8080/login"
 app.get('/', (req, res, next) => {
     res.redirect('/login');
@@ -77,7 +78,7 @@ app.post('/login', (req, res, next) => {
             // redirect the user to "localhost:8080/user"
             res.redirect('/user');
         } else {
-            // user credentials wrong, send them back to the 
+            // user credentials wrong, send them back to the
             // login page
             res.redirect('/login');
         }
