@@ -11,6 +11,18 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
+.testContainer2{
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  // max-width: 500px;
+  // border-spacing: 50px,50px,50px,50px;
+  margin: 50px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
 body {
   background: #76b852;
   /* fallback for old browsers */
@@ -18,7 +30,7 @@ body {
   background: -moz-linear-gradient(right, #76b852, #8DC26F);
   background: -o-linear-gradient(right, #76b852, #8DC26F);
   background: linear-gradient(to left, #76b852, #8DC26F);
-  font-family: "Roboto", sans-serif;
+  font-family: "Impact", Charcoal, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
