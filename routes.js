@@ -130,7 +130,17 @@ router.post('/delete', (req, res) => {
             }));
         }
     }));
-})
+});
+
+router.get('/allAnimals', (req, res) => {
+    let query = '_type: animal';
+    client.search({
+        index: 'animals',
+        q: query
+    }, (err, animals) => {
+
+    });
+});
 
 // Export the routes so the server can use them
 module.exports = router;
