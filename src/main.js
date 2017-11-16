@@ -3,3 +3,4 @@
 // and our Scss file
 import Index from "./components/index.jsx";
 require('./scss/styles.scss');
+require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
