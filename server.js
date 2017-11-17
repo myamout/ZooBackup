@@ -28,6 +28,7 @@ app.use(bodyParser());
 app.use('/api', router);
 // serve the react code for the frontend off of this extension
 app.use('/bundledJs', express.static(__dirname + '/dist/js'));
+app.use('/media', express.static(__dirname + '/media'));
 
 let userPermissions;
 
