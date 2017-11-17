@@ -35,10 +35,25 @@
 }
 
 .testtest{
+margin-left: -7px !important;
+margin-right: 10px;
 width: 75px;
 
 }
 
+.navbar a {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar a:hover {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  background-color:#666666;
+}
 
 button {
   font-family: "Roboto", sans-serif;

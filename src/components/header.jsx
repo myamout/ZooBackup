@@ -7,8 +7,8 @@ export const Header = () => (
   <div>
     <header>
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="../media/zoo.jpeg" style={{ width: 75 }} alt=""></img>
+      <nav className="navbar navbar-expand-lg navbar-inverse bg-dark">
+        <img src="../media/zoo.jpeg" className="testtest" containerElement={<Link to="/user"/>} alt=""></img>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -30,10 +30,12 @@ export const Header = () => (
             <li className="nav-item">
               <a className="nav-link"> <Link to='/deleteAnimal'> Delete Animal </Link> </a>
             </li>
-            <li className="navbar-right">
+          </ul>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
               <a className="nav-link" href="/logout"> Logout </a>
             </li>
-          </ul>
+            </ul>
 
         </div>
       </nav>
