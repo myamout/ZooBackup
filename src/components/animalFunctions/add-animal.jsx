@@ -8,6 +8,7 @@ export default class AddAnimal extends Component {
         // Think of Repository Software Architecture :)
         this.state = {
             permissions: 0,
+            form_accepted: false
         };
         
     }
@@ -58,11 +59,17 @@ class Admin extends Component {
         this.state = {
             animal: {
                 name: '',
+                animal_name_error: '',
                 age: 0,
+                animal_age_error: '',
                 animal_type: '',
+                animal_type_error: '',
                 animal_food: '',
+                animal_food_error: '',
                 animal_health: '',
-                animal_gender: ''
+                animal_health_error: '',
+                animal_gender: '',
+                animal_gender_error: '',
             }
         };
         // Whenever we want to manipulate the state inside of a function
@@ -145,7 +152,6 @@ class Admin extends Component {
             }
         });
     }
-
     handleAnimalGender(event) {
         this.setState({
             animal: {
@@ -156,7 +162,7 @@ class Admin extends Component {
                 animal_health: this.state.animal.animal_health,
                 animal_gender: event.target.value
             }
-        });
+        });        
     }
 
     // This function handles the submit (adds animal to Elastic index)
@@ -164,35 +170,86 @@ class Admin extends Component {
         // event.preventDefault prevents a page refresh
         event.preventDefault();
         console.log(this.state.animal);
-        // create a json object of the state variable animal
-        const data = JSON.stringify(this.state.animal);
-        try {
-            // Inside of this fetch call's options we add
-            // the headers and a body -> body is the json object we just made
-            let response = await fetch('/api/add', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: data
-            });
-            let responseData = await response.json();
-            // We'll reset the state so the user can enter another animal
-            this.setState({
-                animal: {
-                    name: '',
-                    age: 0,
-                    animal_type: '',
-                    animal_food: '',
-                    animal_health: '',
-                    animal_gender: ''
-                }
-            });
-        } catch(error) {
-            console.log(error);
-        }
+
+        const err = this.validate();
+        if (!err) {
+
+            // create a json object of the state variable animal
+            const data = JSON.stringify(this.state.animal);
+            try {
+                // Inside of this fetch call's options we add
+                // the headers and a body -> body is the json object we just made
+                let response = await fetch('/api/add', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: data
+                });
+                let responseData = await response.json();
+                // We'll reset the state so the user can enter another animal
+                this.setState({
+                    animal: {
+                        name: '',
+                        animal_name_error: '',
+                        age: 0,
+                        animal_age_error: '',
+                        animal_type: '',
+                        animal_type_error: '',
+                        animal_food: '',
+                        animal_food_error: '',
+                        animal_health: '',
+                        animal_health_error: '',
+                        animal_gender: '',
+                        animal_gender_error: ''
+                    }
+                });
+                this.setState({
+                    form_accepted: true
+                })
+            } catch(error) {
+                console.log(error);
+            }
+
+        } 
         
+    }
+
+    validate = () => {
+        let isError = false;
+        const errors = {};
+
+        if (this.state.animal.name == '') {
+            isError = true;
+            this.state.animal.animal_name_error = 'No name was given.'
+        }
+        if (this.state.animal.age.length == 0) {
+            isError = true;
+            this.state.animal.animal_age_error = 'No age was given.'
+        }
+        if (this.state.animal.animal_type == '') {
+            isError = true;
+            this.state.animal.animal_type_error = 'No species was given.'
+        }
+        if (this.state.animal.animal_food == '') {
+            isError = true;
+            this.state.animal.animal_food_error = 'No food was given.'
+        }
+        if (this.state.animal.animal_health == '') {
+            isError = true;
+            this.state.animal.animal_health_error = 'No health was given.'
+        }
+        if (this.state.animal.animal_gender == '') {
+            isError = true;
+            this.state.animal.animal_gender_error = 'No gender was given.';
+        }
+
+        this.setState({
+            ...this.state
+        });
+
+        return isError
     }
 
     render() {
@@ -200,15 +257,143 @@ class Admin extends Component {
         // Notice each input component has a value and an onChange field that links to a state
         // variable and function
         // The button has an onClick field that will call the function that adds the animal to the database
+        let animal_name = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Name</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name" />
+
+                </div>
+            </div>
+
+        if (this.state.animal.animal_name_error) {
+            animal_name = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Name</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_name_error}</span>
+                </div>
+            </div>
+        }
+
+        let animal_age = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Age</label>
+                <div className="col-sm-10">
+                    <input type="number" className="form-control" value={this.state.animal.age} onChange={this.handleAnimalAge} placeholder="Enter animal's age" />
+                </div>
+            </div>
+
+        if (this.state.animal.animal_age_error) {
+            animal_age = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Age</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.age} onChange={this.handleAnimalAge} placeholder="Enter animal's age" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_age_error}</span>
+                </div>
+            </div>
+        }
+
+        let animal_type = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Species</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control" value={this.state.animal.animal_type} onChange={this.handleAnimalType} placeholder="Enter species" />
+                </div>
+            </div>
+
+        if (this.state.animal.animal_type_error) {
+            animal_type = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Species</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_type} onChange={this.handleAnimalType} placeholder="Enter species" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_type_error}</span>
+                </div>
+            </div>
+        }
+
+        let animal_food = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Food Choice</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control" value={this.state.animal.animal_food} onChange={this.handleAnimalFood} placeholder="Enter animal's food choice" />
+                </div>
+            </div>
+
+
+        if (this.state.animal.animal_food_error) {
+            animal_food = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Food Choice</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_food} onChange={this.handleAnimalFood} placeholder="Enter animal's food choice" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_food_error}</span>
+                </div>
+            </div>
+        }
+
+
+        let animal_health = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Health</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
+                </div>
+            </div>
+
+        if (this.state.animal.animal_health_error) {
+            animal_health = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Health</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health." />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_health_error}</span>
+                </div>
+            </div>
+        }
+
+        let animal_gender = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Sex</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control" value={this.state.animal.animal_gender} onChange={this.handleAnimalGender} placeholder="Enter animal's sex (M or F)" />
+                </div>
+            </div>
+
+        if (this.state.animal.animal_gender_error) {
+            animal_gender = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Sex</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_gender} onChange={this.handleAnimalGender} placeholder="Enter animal's sex (M or F)" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_gender_error}</span>
+                </div>
+            </div>
+        }
+
+        let added_animal;
+
+        if (this.state.form_accepted) {
+            added_animal = <div class="alert alert-success" role="alert">
+                An animal was successfully added to the zoo!
+            </div>
+            window.scrollTo(0, 0);
+        }
+
         return(
-            <div>
-                <input type="text" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name" />
-                <input type="number" value={this.state.animal.age} onChange={this.handleAnimalAge} placeholder="Enter animal's age" />
-                <input type="text" value={this.state.animal.animal_type} onChange={this.handleAnimalType} placeholder="Enter species" />
-                <input type="text" value={this.state.animal.animal_food} onChange={this.handleAnimalFood} placeholder="Enter animal's food choice" />
-                <input type="text" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
-                <input type="text" value={this.state.animal.animal_gender} onChange={this.handleAnimalGender} placeholder="Enter animal's sex (M or F)" />
-                <button type="button" onClick={this.handleSubmit}> Add Animal </button> 
+            <div className="largeContainer">
+                <div>
+                    <h2> Add Animal </h2>
+                    <hr></hr>
+                    {added_animal}
+
+                    {animal_name}
+
+                    {animal_age}
+
+                    {animal_type}
+
+                    {animal_food}
+                    
+                    {animal_health}
+                    
+                    {animal_gender}
+
+                    <button type="button" onClick={this.handleSubmit}> Add Animal </button>
+
+                </div>
+
             </div>
         );
     }
