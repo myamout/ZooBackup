@@ -9,7 +9,7 @@ export default class AddAnimal extends Component {
         this.state = {
             permissions: 0,
         };
-        
+
     }
     // This component gets called when the component is rendered
     // to the dom.
@@ -192,7 +192,7 @@ class Admin extends Component {
         } catch(error) {
             console.log(error);
         }
-        
+
     }
 
     render() {
@@ -201,15 +201,54 @@ class Admin extends Component {
         // variable and function
         // The button has an onClick field that will call the function that adds the animal to the database
         return(
+        <div className="largeContainer">
             <div>
-                <input type="text" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name" />
-                <input type="number" value={this.state.animal.age} onChange={this.handleAnimalAge} placeholder="Enter animal's age" />
-                <input type="text" value={this.state.animal.animal_type} onChange={this.handleAnimalType} placeholder="Enter species" />
-                <input type="text" value={this.state.animal.animal_food} onChange={this.handleAnimalFood} placeholder="Enter animal's food choice" />
-                <input type="text" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
-                <input type="text" value={this.state.animal.animal_gender} onChange={this.handleAnimalGender} placeholder="Enter animal's sex (M or F)" />
-                <button type="button" onClick={this.handleSubmit}> Add Animal </button> 
+                <h2> Add Animal </h2>
+                <hr></hr>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label">Name</label>
+                    <div className="col-sm-10">
+                        <input type="text" className="form-control" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Age</label>
+                    <div className="col-sm-10">
+                        <input type="number" className="form-control" value={this.state.animal.age} onChange={this.handleAnimalAge} placeholder="Enter animal's age" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Species</label>
+                    <div className="col-sm-10">
+                        <input type="text" className="form-control" value={this.state.animal.animal_type} onChange={this.handleAnimalType} placeholder="Enter species" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Food Choice</label>
+                    <div className="col-sm-10">
+                        <input type="text" className="form-control" value={this.state.animal.animal_food} onChange={this.handleAnimalFood} placeholder="Enter animal's food choice" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Health</label>
+                    <div className="col-sm-10">
+                        <input type="text" className="form-control" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Sex</label>
+                    <div className="col-sm-10">
+                        <input type="text" className="form-control" value={this.state.animal.animal_gender} onChange={this.handleAnimalGender} placeholder="Enter animal's sex (M or F)" />
+                    </div>
+                </div>
+
+                <button type="button" onClick={this.handleSubmit}> Add Animal </button>
+
             </div>
+
+
+
+        </div>
         );
     }
 }
