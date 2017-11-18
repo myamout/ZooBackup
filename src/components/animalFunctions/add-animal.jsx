@@ -10,7 +10,7 @@ export default class AddAnimal extends Component {
             permissions: 0,
             form_accepted: false
         };
-        
+
     }
     // This component gets called when the component is rendered
     // to the dom.
@@ -170,7 +170,6 @@ class Admin extends Component {
         // event.preventDefault prevents a page refresh
         event.preventDefault();
         console.log(this.state.animal);
-
         const err = this.validate();
         if (!err) {
 
@@ -211,9 +210,7 @@ class Admin extends Component {
             } catch(error) {
                 console.log(error);
             }
-
-        } 
-        
+        }
     }
 
     validate = () => {
@@ -393,8 +390,8 @@ class Admin extends Component {
                     <button type="button" onClick={this.handleSubmit}> Add Animal </button>
 
                 </div>
-
             </div>
+        </div>
         );
     }
 }
