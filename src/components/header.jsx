@@ -8,7 +8,7 @@ export const Header = () => (
     <header>
 
       <nav className="navbar navbar-expand-lg navbar-inverse bg-dark">
-        <img src="../media/zoo.jpeg" className="testtest" containerElement={<Link to="/user"/>} alt=""></img>
+        <img src="../media/zoo.jpeg" className="navLogoSize" alt=""></img>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
