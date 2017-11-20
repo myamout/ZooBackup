@@ -83,18 +83,17 @@ class Admin extends Component {
 
     render() {
         return(
-        <div>
                 <div className="miniContainer">
-                    <h3> Enter Animal to Edit</h3>
+                    <h3> Animal to Delete</h3>
                     <hr></hr>
                     <div className="form-group">
                         <div>
-                            <input type="text" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name to delete" />
+                            <input type="text" className="form-control" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name to delete" />
                             <button type="button" onClick={this.handleDelete}> Delete Animal </button>
                         </div>
                     </div>
                 </div>
-                </div>
+        
             );
     }
 }
