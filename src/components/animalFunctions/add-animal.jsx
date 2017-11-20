@@ -162,7 +162,7 @@ class Admin extends Component {
                 animal_health: this.state.animal.animal_health,
                 animal_gender: event.target.value
             }
-        });        
+        });
     }
 
     // This function handles the submit (adds animal to Elastic index)
@@ -382,16 +382,15 @@ class Admin extends Component {
                     {animal_type}
 
                     {animal_food}
-                    
+
                     {animal_health}
-                    
+
                     {animal_gender}
 
                     <button type="button" onClick={this.handleSubmit}> Add Animal </button>
 
                 </div>
             </div>
-        </div>
         );
     }
 }
