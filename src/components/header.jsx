@@ -1,20 +1,45 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 // This renders the nav bar you see at the top of the page
 export const Header = () => (
-    <div>
-        <header>
-            <div className="nav testContainer">
-                <h2 className="nav-logo"> Zoo Management System </h2>
-                <a className="nav-item"> <Link to='/user'> Home </Link> </a>
-                <a className="nav-item"> <Link to='/viewAnimals'> View Animals </Link> </a>
-                <a className="nav-item"> <Link to='/addAnimal'> Add Animal </Link> </a>
-                <a className="nav-item"> <Link to='/editAnimal'> Edit Animal </Link> </a>
-                <a className="nav-item"> <Link to='/deleteAnimal'> Delete Animal </Link> </a>
-                <a className="nav-item" href="/logout"> Logout </a>
-            </div>
-        </header>
-    </div>
+  <div>
+    <header>
+
+      <nav className="navbar navbar-expand-lg navbar-inverse bg-dark">
+        <img src="../media/zoo.jpeg" className="testtest" containerElement={<Link to="/user"/>} alt=""></img>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <a className="nav-link"> <Link to='/user'> Home </Link> </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link"> <Link to='/viewAnimals'> View Animals </Link> </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link"> <Link to='/addAnimal'> Add Animal </Link> </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active"> <Link to='/editAnimal'> Edit Animal </Link> </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link"> <Link to='/deleteAnimal'> Delete Animal </Link> </a>
+            </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="/logout"> Logout </a>
+            </li>
+            </ul>
+
+        </div>
+      </nav>
+
+    </header>
+  </div>
 )

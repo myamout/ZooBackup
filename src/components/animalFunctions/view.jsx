@@ -11,7 +11,9 @@ export default class View extends Component {
 
     render() {
         return(
+          <div className="largeContainer">
             <h1> View page </h1>
+          </div>
         )
     }
 
