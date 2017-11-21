@@ -230,9 +230,6 @@ export default class EditAnimal extends Component {
                                 <button type="button" onClick={this.handleSubmit}> Save Changes </button>
 
                             </div>
-
-
-
                         </div>
                 )}
             </div>

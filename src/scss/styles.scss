@@ -4,8 +4,8 @@
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  margin: 50 100 50 100px;
-  padding: 45px;
+  margin: 75 100 75 100px;
+  padding: 20 45 20 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -26,8 +26,8 @@
   outline: 0;
   background: #f2f2f2 !important;
   width: 100%;
-  margin: 0 0 15px;
-  padding: 15px;
+  margin: 0 0 1px;
+  padding: 10px;
   box-sizing: inherit !important;
   font-size: 14px;
 }
@@ -78,4 +78,19 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  // background: url('https://img1.10bestmedia.com/Images/Photos/338309/Audubon-Zoo_54_990x660.jpg') center center no-repeat;
+  // background-size: cover;
+  //
+  // &:before {
+  //   content: '';
+	// position: absolute;
+	// top: 0;
+	// right: 0;
+	// bottom: 0;
+	// left: 0;
+	// background-image: linear-gradient(to bottom right,#76b852,#8DC26F);
+	// opacity: .6;
+  //
+  //   }
 }
