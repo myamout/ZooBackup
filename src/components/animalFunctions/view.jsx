@@ -7,60 +7,112 @@ export default class View extends Component {
         this.state = {
             animals: []
         };
+        // Sorts
+        this.handleGetAllAnimals = this.handleGetAllAnimals.bind(this);
+        this.handleNameSort = this.handleNameSort.bind(this);
+        this.handleAgeSort = this.handleAgeSort.bind(this);
+        this.handleGenderSort = this.handleGenderSort.bind(this);
+
+        // Filters
+        this.handleGenderFilter = this.handleGenderFilter.bind(this);
+
+        this.handleGetAllAnimals();
     }
 
-    async componentWillMount() {
+    componentDidUpdate() {
+        console.log(this.state.animals);
+    }
+
+    async handleGetAllAnimals() {
         try {
             let response = await fetch('/api/allAnimals', {
                 method: 'get'
             });
             let responseData = await response.json();
-            this.setState({
-                animals: responseData.animals
+            let allAnimals = responseData.animals;
+            let stateArray = [];
+            allAnimals.forEach((animal) => {
+                stateArray.push(animal._source);
             });
-            console.log(this.state.animals);
+            this.setState({
+                animals: stateArray
+            });
         } catch (error) {
             console.log(error);
         }
     }
 
-    async handleAgeFilter(event) {
+    handleNameSort(event) {
         event.preventDefault();
-        try {
-            let response = await fetch('/api/query', {
-                method: 'get'
+        let currentAnimals = this.state.animals;
+        currentAnimals.sort((a, b) => {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+            if (nameA < nameB) { return -1; }
+            if (nameA > nameB) { return 1; }
+            return 0;
+        });
+        this.setState({
+            animals: currentAnimals
+        });
+    }
+
+    handleAgeSort(event) {
+        event.preventDefault();
+        let currentAnimals = this.state.animals;
+        currentAnimals.sort((a, b) => {
+            let ageA = a.age;
+            let ageB = b.age;
+            if (ageA < ageB) { return -1; }
+            if (ageA > ageB) { return 1; }
+            return 0;
+        });
+        this.setState({
+            animals: currentAnimals
+        });
+    }
+
+    handleGenderSort(event) {
+        event.preventDefault();
+        let currentAnimals = this.state.animals;
+        currentAnimals.sort((a, b) => {
+            let genderA = a.animal_gender;
+            let genderB = b.animal_gender;
+            if (genderA > genderB) { return -1; }
+            if (genderA < genderB) { return 1; }
+            return 0;
+        });
+        this.setState({
+            animals: currentAnimals
+        });
+    }
+
+    handleGenderFilter(event) {
+        event.preventDefault();
+        let currentAnimals = this.state.animals;
+        let filteredAnimals = () => {
+            return currentAnimals.filter((animal) => {
+                return animal.animal_gender.toLowerCase().indexOf('m') === 0;
             });
-            let responseData = await response.json();
-            console.log(responseData);
-            this.setState({
-                animals: responseData.animals.hits.hits
-            });
-            console.log(this.state.animals);
-        } catch (error) {
-            console.log(error);
         }
+        currentAnimals = filteredAnimals();
+        this.setState({
+            animals: currentAnimals
+        });
     }
 
     render() {
         return(
           <div className="largeContainer">
-            <button type="button" onClick={this.handleAgeFilter}> Filter Age </button>
-            <table> 
-                <thead> 
-                    <tr>
-                        <th> Name </th>
-                        <th> Age </th>
-                    </tr>
-                </thead>
-                <tbody> 
-                    {this.state.animals.map((animal, i) => {
-                        <tr key={animal._id}> 
-                            <td key={animal._source.name}> {animal._source.name} </td>
-                            <td key={animal._source.age}> {animal._source.age} </td>
-                        </tr>
-                    })}
-                </tbody>
-            </table>
+            <div className="btn-group" role="group" aria-label="Sorts">
+                <button type="button" className="btn btn-secondary" onClick={this.handleNameSort}>Sort By Name</button>
+                <button type="button" className="btn btn-secondary" onClick={this.handleAgeSort}>Sort By Age</button>
+                <button type="button" className="btn btn-secondary" onClick={this.handleGenderSort}>Sort By Gender</button>
+            </div>
+            <div className="btn-group" role="group" aria-label="Sorts">
+                <button type="button" className="btn btn-secondary" onClick={this.handleGenderFilter}>Filter By Gender Male</button>
+                <button type="button" className="btn btn-secondary" onClick={this.handleGetAllAnimals}>Reset Filters</button>
+            </div>
           </div>
         )
     }
