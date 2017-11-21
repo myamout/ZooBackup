@@ -145,8 +145,46 @@ router.get('/allAnimals', (req, res) => {
         index: 'animals',
         q: query
     }, (err, animals) => {
-
+        if (err) { res.send({success: false});}
+        if (animals.hits.hits.length === 0) {
+            res.send({success: false});
+        } else {
+            res.send({ animals: animals.hits.hits});
+        }
     });
+});
+
+router.get('/query', (req, res) => {
+    let query = {
+        "query": {
+            "range": {
+                "age": {
+                    "gte": 2,
+                    "lte": 22 
+                }
+            }
+        }
+    };
+    client.search({
+        index: 'animals',
+        body: {
+            query: {
+                range: {
+                    age: {
+                        gte: 2,
+                        lte: 22
+                    }
+                }
+            }
+        }
+    }, (err, animals) => {
+        if (err) {
+            console.log(err);
+            res.send({ success: false });
+        } else {
+            res.send({ animals: animals });
+        }
+    })
 });
 
 // Export the routes so the server can use them
