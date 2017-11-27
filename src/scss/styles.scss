@@ -50,6 +50,50 @@ width: 75px;
   background-color:#666666;
 }
 
+.buttonSpacer{
+  margin-top: 20px;
+}
+
+.middlespacer{
+  margin-right: 60px;
+}
+
+.filterContainer{
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  margin: 40 100 -50 100px;
+  padding: 20 45 20 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.filterContainer button {
+  text-transform: uppercase;
+  background: white;
+  color: black;
+  cursor: pointer;
+}
+
+@media(max-width: 850px){
+  .btn-group {
+    display: block !important;
+    width: auto !important;
+  }
+}
+
+.filterContainer button:hover {
+  text-transform: uppercase;
+  background: #43A047;
+  color: white;
+  cursor: pointer;
+}
+
+th {
+  color: white;
+  background:#43A047;
+}
+
 button {
   text-transform: uppercase;
   outline: 0;
@@ -78,19 +122,4 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  // background: url('https://img1.10bestmedia.com/Images/Photos/338309/Audubon-Zoo_54_990x660.jpg') center center no-repeat;
-  // background-size: cover;
-  //
-  // &:before {
-  //   content: '';
-	// position: absolute;
-	// top: 0;
-	// right: 0;
-	// bottom: 0;
-	// left: 0;
-	// background-image: linear-gradient(to bottom right,#76b852,#8DC26F);
-	// opacity: .6;
-  //
-  //   }
 }
