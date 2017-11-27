@@ -137,7 +137,22 @@ router.post('/delete', (req, res) => {
             }));
         }
     }));
-})
+});
+
+router.get('/allAnimals', (req, res) => {
+    let query = '_type: animal';
+    client.search({
+        index: 'animals',
+        q: query
+    }, (err, animals) => {
+        if (err) { res.send({success: false});}
+        if (animals.hits.hits.length === 0) {
+            res.send({success: false});
+        } else {
+            res.send({ animals: animals.hits.hits});
+        }
+    });
+});
 
 // Export the routes so the server can use them
 module.exports = router;
