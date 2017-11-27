@@ -102,16 +102,48 @@ export default class View extends Component {
     }
 
     render() {
+        let tableBody = this.state.animals.map((animal) => {
+            return(
+                <tr key={animal.name}> 
+                    <td> {animal.name} </td>
+                    <td> {animal.age} </td>
+                    <td> {animal.animal_type} </td>
+                    <td> {animal.animal_food} </td>
+                    <td> {animal.animal_health} </td>
+                    <td> {animal.animal_gender} </td>
+                </tr>
+            );
+        });
         return(
-          <div className="largeContainer">
-            <div className="btn-group" role="group" aria-label="Sorts">
-                <button type="button" className="btn btn-secondary" onClick={this.handleNameSort}>Sort By Name</button>
-                <button type="button" className="btn btn-secondary" onClick={this.handleAgeSort}>Sort By Age</button>
-                <button type="button" className="btn btn-secondary" onClick={this.handleGenderSort}>Sort By Gender</button>
+          <div> 
+              <div className="largeContainer">
+                <div className="btn-group" role="group" aria-label="Sorts">
+                    <button type="button" className="btn btn-secondary" onClick={this.handleNameSort}>Sort By Name</button>
+                    <button type="button" className="btn btn-secondary" onClick={this.handleAgeSort}>Sort By Age</button>
+                    <button type="button" className="btn btn-secondary" onClick={this.handleGenderSort}>Sort By Gender</button>
+                    <button type="button" className="btn btn-secondary" onClick={this.handleGetAllAnimals}> Reset Sort </button>
+                </div>
+                <div className="btn-group" role="group" aria-label="Sorts">
+                    <button type="button" className="btn btn-secondary" onClick={this.handleGenderFilter}>Filter By Gender Male</button>
+                    <button type="button" className="btn btn-secondary" onClick={this.handleGetAllAnimals}>Reset Filters</button>
+                </div>
             </div>
-            <div className="btn-group" role="group" aria-label="Sorts">
-                <button type="button" className="btn btn-secondary" onClick={this.handleGenderFilter}>Filter By Gender Male</button>
-                <button type="button" className="btn btn-secondary" onClick={this.handleGetAllAnimals}>Reset Filters</button>
+            <div className="largeContainer"> 
+                <table> 
+                    <thead>
+                        <tr> 
+                            <th> Name </th>
+                            <th> Age </th>
+                            <th> Animal </th>
+                            <th> Food </th>
+                            <th> Health </th>
+                            <th> Gender </th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        {tableBody}
+                    </tbody>
+                </table>
             </div>
           </div>
         )
