@@ -104,7 +104,7 @@ export default class View extends Component {
     render() {
         let tableBody = this.state.animals.map((animal) => {
             return(
-                <tr key={animal.name}> 
+                <tr key={animal.name}>
                     <td> {animal.name} </td>
                     <td> {animal.age} </td>
                     <td> {animal.animal_type} </td>
@@ -115,9 +115,9 @@ export default class View extends Component {
             );
         });
         return(
-          <div> 
-              <div className="largeContainer">
-                <div className="btn-group" role="group" aria-label="Sorts">
+          <div>
+              <div className="filterContainer">
+                <div className="btn-group middlespacer" role="group" aria-label="Sorts">
                     <button type="button" className="btn btn-secondary" onClick={this.handleNameSort}>Sort By Name</button>
                     <button type="button" className="btn btn-secondary" onClick={this.handleAgeSort}>Sort By Age</button>
                     <button type="button" className="btn btn-secondary" onClick={this.handleGenderSort}>Sort By Gender</button>
@@ -128,10 +128,11 @@ export default class View extends Component {
                     <button type="button" className="btn btn-secondary" onClick={this.handleGetAllAnimals}>Reset Filters</button>
                 </div>
             </div>
-            <div className="largeContainer"> 
-                <table> 
+            <div className="largeContainer">
+                <div className="table-responsive">
+                <table className="table table-bordered table-striped">
                     <thead>
-                        <tr> 
+                        <tr>
                             <th> Name </th>
                             <th> Age </th>
                             <th> Animal </th>
@@ -140,13 +141,13 @@ export default class View extends Component {
                             <th> Gender </th>
                         </tr>
                     </thead>
-                    <tbody> 
+                    <tbody>
                         {tableBody}
                     </tbody>
                 </table>
+                </div>
             </div>
           </div>
         )
     }
 }
-

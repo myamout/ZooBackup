@@ -89,11 +89,11 @@ class Admin extends Component {
                     <div className="form-group">
                         <div>
                             <input type="text" className="form-control" value={this.state.animal.name} onChange={this.handleAnimalName} placeholder="Enter animal name to delete" />
-                            <button type="button" onClick={this.handleDelete}> Delete Animal </button>
+                            <button className = "buttonSpacer" type="button" onClick={this.handleDelete}> Delete Animal </button>
                         </div>
                     </div>
                 </div>
-        
+
             );
     }
 }
