@@ -67,7 +67,7 @@ export default class EditAnimal extends Component {
                     }
                 });
             } else {
-              console.log(responseData);
+                console.log(responseData);
             }
         } catch (error) {
             console.log(error);

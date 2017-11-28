@@ -115,12 +115,12 @@ router.get('/exists', (req, res) => {
             res.send({ success: false });
         }
         if (response.hits.hits.length === 0) {
-          res.send({ success: false });
+            res.send({ success: false });
         } else {
-          res.send({
-              success: true,
-              animal: response.hits.hits[0]._source
-          });
+            res.send({
+                success: true,
+                animal: response.hits.hits[0]._source
+            });
         }
     }));
 });
@@ -202,8 +202,7 @@ router.post('/delete', (req, res) => {
         if (err) { res.send({ success: false })}
         if (response.hits.hits.length === 0) {
             res.send({ success: false });
-        }
-        else {
+        } else {
             client.delete({
                 index: 'animals',
                 type: 'animal',
