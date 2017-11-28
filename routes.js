@@ -126,8 +126,8 @@ router.get('/exists', (req, res) => {
 });
 
 router.get('/exists_inventory', (req, res) => {
-    
-})
+     
+});
 
 // Updates the animal document after the user has edited it
 router.post('/update', (req, res) => {
