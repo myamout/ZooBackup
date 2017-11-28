@@ -139,7 +139,8 @@ class Admin extends Component {
                 <hr></hr>
                 {deleted_animal}
                 {animal_name}
-                <button type="button" onClick={this.handleDelete}> Delete Animal </button>
+                <button className = "buttonSpacer" type="button" onClick={this.handleDelete}> Delete Animal </button>
+
             </div>
         );
     }

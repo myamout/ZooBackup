@@ -67,6 +67,41 @@ router.post('/add', (req, res) => {
     }));
 });
 
+router.post('/add_inventory', (req, res) => {
+    let count;
+    client.get({
+        index: 'inventory',
+        type: 'id_count',
+        id: '2'
+    }, ((err, response) => {
+        if (err) { res.send({success: false }); }
+        else {
+            count = response._source.count + 1;
+            client.index({
+                index: 'inventory',
+                type: 'foods',
+                id: count,
+                body: req.body
+            }, ((err, response) => {
+                if (err) { res.send({success: false }); }
+                else {
+                    client.index({
+                        index: 'inventory',
+                        type: 'id_count',
+                        id: 2,
+                        body: {
+                            count: count
+                        }
+                    }, ((err, response) => {
+                        if (err) { res.send({ success: false }); }
+                        else { res.send({ success: true }); }
+                    }));
+                }
+            }));
+        }
+    }));
+});
+
 // Checks if the animal document exists in the index
 // If it does send back the animal object to edit
 // Queries the animal index by animal name -> remember each animal gets a unique name
@@ -90,6 +125,24 @@ router.get('/exists', (req, res) => {
     }));
 });
 
+router.get('/exists_inventory', (req, res) => {
+     const query = 'food_type:'+req['query']['food_type'];
+     client.search({
+         index: 'inventory',
+         q: query
+     }, ((err, response) => {
+         if (err) { res.send({ success: false }); }
+         if (response.hits.hits.length === 0) {
+             res.send({ success: false });
+         } else {
+             res.send({
+                 success: true,
+                 item: response.hits.hits[0]._source
+             });
+         }
+     }));
+});
+
 // Updates the animal document after the user has edited it
 router.post('/update', (req, res) => {
     let query = 'name:'+req.body.name;
@@ -103,6 +156,30 @@ router.post('/update', (req, res) => {
         client.index({
             index: 'animals',
             type: 'animal',
+            id: response.hits.hits[0]._id,
+            body: req.body
+        }, ((err, response) => {
+            if (err) {
+                res.send({ success: false });
+            } else {
+                res.send({ success: true });
+            }
+        }));
+    }));
+});
+
+router.post('/update_inventory', (req, res) => {
+    let query = 'food_type:'+req.body.food_type;
+    client.search({
+        index: 'inventory',
+        q: query
+    }, ((err, response) => {
+        if (err) {
+            res.send({ success: false });
+        }
+        client.index({
+            index: 'inventory',
+            type: 'foods',
             id: response.hits.hits[0]._id,
             body: req.body
         }, ((err, response) => {
@@ -136,7 +213,66 @@ router.post('/delete', (req, res) => {
             }));
         }
     }));
-})
+});
+
+router.post('/delete_inventory', (req, res) => {
+    let query = 'food_type:'+req.body.food_type;
+    client.search({
+        index: 'inventory',
+        q: query
+    }, ((err, response) => {
+        if (err) {
+            res.send({ success: false });
+        }
+        if (response.hits.hits.length === 0) {
+            res.send({ success: false });
+        } else {
+            client.delete({
+                index: 'inventory',
+                type: 'foods',
+                id: response.hits.hits[0]._id
+            }, ((err, response) => {
+                if (err) {
+                    res.send({ success: false });
+                } else {
+                    res.send({ success: true });
+                }
+            }));
+        }
+    }));
+});
+
+router.get('/allAnimals', (req, res) => {
+    let query = '_type: animal';
+    client.search({
+        index: 'animals',
+        q: query
+    }, (err, animals) => {
+        if (err) { res.send({success: false});}
+        if (animals.hits.hits.length === 0) {
+            res.send({success: false});
+        } else {
+            res.send({ animals: animals.hits.hits});
+        }
+    });
+});
+
+router.get('/allInventory', (req, res) => {
+    let query = '_type: foods';
+    client.search({
+        index: 'inventory',
+        q: query
+    }, ((err, response) => {
+        if (err) {
+            res.send({ success: false });
+        } 
+        if (response.hits.hits.length === 0) {
+            res.send({ success: false });
+        } else {
+            res.send({ items: response.hits.hits });
+        }
+    }));
+});
 
 // Export the routes so the server can use them
 module.exports = router;

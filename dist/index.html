@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="../dist/test.css">
   <title>Sign In</title>
   <style>
     .login-page {
@@ -57,7 +58,7 @@
 
     .logoWorkAround {
       max-width: 100px;
-      background-image: url('https://cdn.cp.adobe.io/content/2/dcx/3e639bfc-1f49-49be-8e68-6cb0d072ef5a/rendition/preview.jpg/version/0/format/jpg/dimension/width/size/1200');
+      background-image: url('../media/zoo.jpeg');
       background-size: 100%;
       position: relative;
       margin: 0 auto 00px;
@@ -69,14 +70,17 @@
     body {
       background: #76b852;
       /* fallback for old browsers */
-      background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-      background: -moz-linear-gradient(right, #76b852, #8DC26F);
-      background: -o-linear-gradient(right, #76b852, #8DC26F);
-      background: linear-gradient(to left, #76b852, #8DC26F);
+      background: -webkit-linear-gradient(right, #76b852 5%, #8DC26F 90%),url('../media/zoo.jpeg');
+      background: -moz-linear-gradient(right, #76b852 5%, #8DC26F 90%),url('../media/zoo.jpeg');
+      background: -o-linear-gradient(right, #76b852 5%, #8DC26F 90%),url('../media/zoo.jpeg');
+      background: linear-gradient(to left, #76b852 5%, #8DC26F 90%),url('../media/zoo.jpeg');
+      /*background-image: url('../media/zoo.jpeg');*/
       font-family: "Roboto", sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
+
   </style>
 </head>
 
