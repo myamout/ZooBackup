@@ -18,7 +18,7 @@ export default class DeleteAnimal extends Component {
             this.setState({
                 permissions: responseData.permissions
             });
-            console.log(this.state.permissions);
+            // console.log(this.state.permissions);
         } catch (error) {
             console.log(error);
         }
@@ -94,16 +94,16 @@ class Admin extends Component {
     validate = () => {
         let isError = false;
 
-        if (this.state.animal.name == '') {
+        if (this.state.animal.name.trim().length == 0) {
             isError = true;
-            this.state.animal.animal_name_error = 'No name was given.'
+            this.state.animal.animal_name_error = 'No name was given.';
         }
 
         this.setState({
             ...this.state
         });
 
-        return isError
+        return isError;
     }
 
     render() {
