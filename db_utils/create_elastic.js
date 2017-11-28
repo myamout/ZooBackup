@@ -29,8 +29,12 @@ const animal_index = {
                     'age': { type: 'integer'},
                     'animal_type': { type: 'text', fielddata: true},
                     'animal_food': { type: 'text', fielddata: true},
-                    'animal_health': { type: 'text', fielddata: true},
-                    'animal_gender': { type: 'text', fielddata: true}
+                    'animal_health': {type: 'integer'},
+                    'animal_gender': { type: 'text', fielddata: true},
+                    'animal_origin': { type: 'text', fielddata: true},
+                    'animal_weight': { type: 'integer'},
+                    'animal_enclosure_id': { type: 'integer'},
+                    'animal_size': { type: 'text', fielddata: true}
                 }
             },
             'id_count': {
@@ -59,8 +63,12 @@ client.bulk({
             age: 22,
             animal_type: 'Tiger',
             animal_food: 'Meat',
-            animal_health: 'Healthy',
-            animal_gender: 'Male'
+            animal_health: 5,
+            animal_gender: 'Male',
+            animal_origin: 'India',
+            animal_weight: 200,
+            animal_enclosure_id: 1,
+            animal_size: 'Medium'
         },
         { index: { _index: 'animals', _type: 'animal', _id: 2} },
         {
@@ -69,8 +77,12 @@ client.bulk({
             age: 22,
             animal_type: 'Tiger',
             animal_food: 'Meat',
-            animal_health: 'Healthy',
-            animal_gender: 'Female'
+            animal_health: 5,
+            animal_gender: 'Female',
+            animal_origin: 'India',
+            animal_weight: 175,
+            animal_enclosure_id: 1,
+            animal_size: 'Medium'
         },
         { index: { _index: 'animals', _type: 'id_count', _id: 1} },
         {
