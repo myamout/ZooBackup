@@ -328,43 +328,43 @@ class Admin extends Component {
     validate = () => {
         let isError = false;
 
-        if (this.state.animal.name == '') {
+        if (this.state.animal.name.trim().length == 0) {
             isError = true;
             this.state.animal.animal_name_error = 'No name was given.'
         }
-        if (this.state.animal.age.length == 0) {
+        if (this.state.animal.age.trim().length == 0) {
             isError = true;
             this.state.animal.animal_age_error = 'No age was given.'
         }
-        if (this.state.animal.animal_type == '') {
+        if (this.state.animal.animal_type.trim().length == 0) {
             isError = true;
             this.state.animal.animal_type_error = 'No species was given.'
         }
-        if (this.state.animal.animal_food == '') {
+        if (this.state.animal.animal_food.trim().length == 0) {
             isError = true;
             this.state.animal.animal_food_error = 'No food was given.'
         }
-        if (this.state.animal.animal_health.length == 0) {
+        if (this.state.animal.animal_health.trim().length == 0) {
             isError = true;
             this.state.animal.animal_health_error = 'No health was given.'
         }
-        if (this.state.animal.animal_gender == '') {
+        if (this.state.animal.animal_gender.trim().length == 0) {
             isError = true;
             this.state.animal.animal_gender_error = 'No gender was given.';
         }
-        if (this.state.animal.animal_origin == '') {
+        if (this.state.animal.animal_origin.trim().length == 0) {
             isError = true;
             this.state.animal.animal_origin_error = 'No origin was given.';
         }
-        if (this.state.animal.animal_weight.length == 0) {
+        if (this.state.animal.animal_weight.trim().length == 0) {
             isError = true;
             this.state.animal.animal_weight_error = 'No weight was given.';
         }
-        if (this.state.animal.animal_enclosure_id.length == 0) {
+        if (this.state.animal.animal_enclosure_id.trim().length == 0) {
             isError = true;
             this.state.animal.animal_enclosure_id_error = 'No enclosure id was given.';
         }
-        if (this.state.animal.animal_size == '') {
+        if (this.state.animal.animal_size.trim().length == 0) {
             isError = true;
             this.state.animal.animal_size_error = 'No size (S/M/L) was given.';
         }
@@ -373,7 +373,7 @@ class Admin extends Component {
             ...this.state
         });
 
-        return isError
+        return isError;
     }
 
 
@@ -454,7 +454,7 @@ class Admin extends Component {
 
 
         let animal_health = <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Health</label>
+                <label className="col-sm-2 col-form-label">Health Rating</label>
                 <div className="col-sm-10">
                     <input type="number" className="form-control" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
                 </div>
@@ -462,7 +462,7 @@ class Admin extends Component {
 
         if (this.state.animal.animal_health_error) {
             animal_health = <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Health</label>
+                <label className="col-sm-2 col-form-label">Health Rating</label>
                 <div className="col-sm-10">
                     <input type="number" className="form-control is-invalid" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health." />
                     <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_health_error}</span>
@@ -581,13 +581,9 @@ class Admin extends Component {
                     {animal_food}
                     {animal_health}
                     {animal_gender}
-
                     {animal_origin}
-
                     {animal_weight}
-
                     {animal_enclosure_id}
-
                     {animal_size}
 
                     <button type="button" onClick={this.handleSubmit}> Add Animal </button>
