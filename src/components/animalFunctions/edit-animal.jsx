@@ -339,7 +339,7 @@ export default class EditAnimal extends Component {
             isError = true;
             this.state.animal.animal_name_error = 'No name was given.'
         }
-        if (this.state.animal.age.trim().length == 0) {
+        if (this.state.animal.age == '') {
             isError = true;
             this.state.animal.animal_age_error = 'No age was given.'
         }
@@ -351,7 +351,7 @@ export default class EditAnimal extends Component {
             isError = true;
             this.state.animal.animal_food_error = 'No food was given.'
         }
-        if (this.state.animal.animal_health.trim().length == 0) {
+        if (this.state.animal.animal_health == '') {
             isError = true;
             this.state.animal.animal_health_error = 'No health was given.'
         }
@@ -363,11 +363,11 @@ export default class EditAnimal extends Component {
             isError = true;
             this.state.animal.animal_origin_error = 'No origin was given.';
         }
-        if (this.state.animal.animal_weight.trim().length == 0) {
+        if (this.state.animal.animal_weight == '') {
             isError = true;
             this.state.animal.animal_weight_error = 'No weight was given.';
         }
-        if (this.state.animal.animal_enclosure_id.trim().length == 0) {
+        if (this.state.animal.animal_enclosure_id == '') {
             isError = true;
             this.state.animal.animal_enclosure_id_error = 'No enclosure id was given.';
         }
