@@ -8,7 +8,7 @@ export default class AddAnimal extends Component {
         // Think of Repository Software Architecture :)
         this.state = {
             permissions: 0,
-            form_accepted: false
+            form_accepted: ''
         };
 
     }
@@ -31,7 +31,7 @@ export default class AddAnimal extends Component {
             this.setState({
                 permissions: responseData.permissions
             });
-            console.log(this.state.permissions);
+            // console.log(this.state.permissions);
         } catch (error) {
             console.log(error);
         }
@@ -162,52 +162,65 @@ class Admin extends Component {
                 animal_health: this.state.animal.animal_health,
                 animal_gender: event.target.value
             }
-        });        
+        });
     }
 
     // This function handles the submit (adds animal to Elastic index)
     async handleSubmit(event) {
         // event.preventDefault prevents a page refresh
         event.preventDefault();
-        console.log(this.state.animal);
         const err = this.validate();
         if (!err) {
-
-            // create a json object of the state variable animal
-            const data = JSON.stringify(this.state.animal);
             try {
-                // Inside of this fetch call's options we add
-                // the headers and a body -> body is the json object we just made
-                let response = await fetch('/api/add', {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: data
+                let response = await fetch(`/api/exists?name=${this.state.animal.name}`, {
+                    method: 'get'
                 });
                 let responseData = await response.json();
-                // We'll reset the state so the user can enter another animal
-                this.setState({
-                    animal: {
-                        name: '',
-                        animal_name_error: '',
-                        age: 0,
-                        animal_age_error: '',
-                        animal_type: '',
-                        animal_type_error: '',
-                        animal_food: '',
-                        animal_food_error: '',
-                        animal_health: '',
-                        animal_health_error: '',
-                        animal_gender: '',
-                        animal_gender_error: ''
+                if (responseData.success === true) {
+                    console.log("Animal already Exists");
+                    this.setState({
+                        form_accepted: false
+                    });
+                } else {
+                    // create a json object of the state variable animal
+                    const data = JSON.stringify(this.state.animal);
+                    try {
+                        // Inside of this fetch call's options we add
+                        // the headers and a body -> body is the json object we just made
+                        let response = await fetch('/api/add', {
+                            method: 'post',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: data
+                        });
+                        let responseData = await response.json();
+                        // We'll reset the state so the user can enter another animal
+                        this.setState({
+                            animal: {
+                                name: '',
+                                animal_name_error: '',
+                                age: 0,
+                                animal_age_error: '',
+                                animal_type: '',
+                                animal_type_error: '',
+                                animal_food: '',
+                                animal_food_error: '',
+                                animal_health: '',
+                                animal_health_error: '',
+                                animal_gender: '',
+                                animal_gender_error: ''
+                            }
+                        });
+                        this.setState({
+                            form_accepted: true
+                        });
+                    } catch(error) {
+                        console.log(error);
                     }
-                });
-                this.setState({
-                    form_accepted: true
-                })
-            } catch(error) {
+                }
+            } catch (error) {
                 console.log(error);
             }
         }
@@ -215,7 +228,6 @@ class Admin extends Component {
 
     validate = () => {
         let isError = false;
-        const errors = {};
 
         if (this.state.animal.name == '') {
             isError = true;
@@ -248,6 +260,7 @@ class Admin extends Component {
 
         return isError
     }
+
 
     render() {
         // This is what gets rendered to the dom
@@ -361,9 +374,14 @@ class Admin extends Component {
 
         let added_animal;
 
-        if (this.state.form_accepted) {
-            added_animal = <div class="alert alert-success" role="alert">
+        if (this.state.form_accepted === true) {
+            added_animal = <div className="alert alert-success" role="alert">
                 An animal was successfully added to the zoo!
+            </div>
+            window.scrollTo(0, 0);
+        } else if (this.state.form_accepted === false) {
+            added_animal = <div className="alert alert-warning" role="alert">
+                An animal with that name already exists!
             </div>
             window.scrollTo(0, 0);
         }
@@ -374,19 +392,12 @@ class Admin extends Component {
                     <h2> Add Animal </h2>
                     <hr></hr>
                     {added_animal}
-
                     {animal_name}
-
                     {animal_age}
-
                     {animal_type}
-
                     {animal_food}
-                    
                     {animal_health}
-                    
                     {animal_gender}
-
                     <button type="button" onClick={this.handleSubmit}> Add Animal </button>
 
                 </div>

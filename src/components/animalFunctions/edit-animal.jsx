@@ -53,6 +53,8 @@ export default class EditAnimal extends Component {
                         animal_gender: responseData.animal.animal_gender
                     }
                 });
+            } else {
+                console.log(responseData);
             }
         } catch (error) {
             console.log(error);
