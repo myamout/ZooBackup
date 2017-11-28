@@ -148,6 +148,6 @@ export default class View extends Component {
                 </div>
             </div>
           </div>
-        )
+        );
     }
 }
