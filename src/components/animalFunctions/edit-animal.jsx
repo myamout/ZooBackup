@@ -181,7 +181,7 @@ export default class EditAnimal extends Component {
                         <div className="form-group">
                             <div>
                                 <input type="text" className="form-control" value={this.state.name} onChange={this.handleName} placeholder="Enter Animal Name" />
-                                <button type="button" onClick={this.handleCanEdit}> Edit Animal </button>
+                                <button className = "buttonSpacer" type="button" onClick={this.handleCanEdit}> Edit Animal </button>
                             </div>
                         </div>
                     </div>
@@ -230,9 +230,6 @@ export default class EditAnimal extends Component {
                                 <button type="button" onClick={this.handleSubmit}> Save Changes </button>
 
                             </div>
-
-
-
                         </div>
                 )}
             </div>

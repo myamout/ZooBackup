@@ -7,6 +7,7 @@ export default class Home extends Component {
         return(
         	<div className="largeContainer">
 	            <h1> Home page </h1>
+                <img src="../media/monkey.jpg" className="navLogoSize" alt=""></img>
 	            <button type="button" className="btn btn-primary tester">Primary</button>
             </div>
         );
