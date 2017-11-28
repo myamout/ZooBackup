@@ -9,20 +9,29 @@ export default class EditAnimal extends Component {
                 age: 0,
                 animal_type: '',
                 animal_food: '',
-                animal_health: '',
-                animal_gender: ''
+                animal_health: 0,
+                animal_gender: '',
+                animal_origin: '',
+                animal_weight: 0,
+                animal_enclosure_id: 0,
+                animal_size: 0
             },
             canEdit: false,
             name: ''
         };
         this.handleName = this.handleName.bind(this);
         this.handleCanEdit = this.handleCanEdit.bind(this);
+
         this.handleAnimalName = this.handleAnimalName.bind(this);
         this.handleAnimalAge = this.handleAnimalAge.bind(this);
         this.handleAnimalType = this.handleAnimalType.bind(this);
         this.handleAnimalFood = this.handleAnimalFood.bind(this);
         this.handleAnimalHealth = this.handleAnimalHealth.bind(this);
         this.handleAnimalGender = this.handleAnimalGender.bind(this);
+        this.handleAnimalOrigin = this.handleAnimalOrigin.bind(this);
+        this.handleAnimalWeight = this.handleAnimalWeight.bind(this);
+        this.handleAnimalEnclosureId = this.handleAnimalEnclosureId.bind(this);
+        this.handleAnimalSize = this.handleAnimalSize.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -50,7 +59,11 @@ export default class EditAnimal extends Component {
                         animal_type: responseData.animal.animal_type,
                         animal_food: responseData.animal.animal_food,
                         animal_health: responseData.animal.animal_health,
-                        animal_gender: responseData.animal.animal_gender
+                        animal_gender: responseData.animal.animal_gender,
+                        animal_origin: responseData.animal.animal_origin,
+                        animal_weight: responseData.animal.animal_weight,
+                        animal_enclosure_id: responseData.animal.animal_enclosure_id,
+                        animal_size: responseData.animal.animal_size
                     }
                 });
             } else {
@@ -69,7 +82,11 @@ export default class EditAnimal extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -82,7 +99,11 @@ export default class EditAnimal extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -95,7 +116,11 @@ export default class EditAnimal extends Component {
                 animal_type: event.target.value,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -108,7 +133,11 @@ export default class EditAnimal extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: event.target.value,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -121,11 +150,14 @@ export default class EditAnimal extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: event.target.value,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
-
     handleAnimalGender(event) {
         this.setState({
             animal: {
@@ -134,7 +166,79 @@ export default class EditAnimal extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: event.target.value
+                animal_gender: event.target.value,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalOrigin(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: event.target.value,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalWeight(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: event.target.value,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalEnclosureId(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: event.target.value,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalSize(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: event.target.value
             }
         });
     }
@@ -159,8 +263,12 @@ export default class EditAnimal extends Component {
                     age: 0,
                     animal_type: '',
                     animal_food: '',
-                    animal_health: '',
-                    animal_gender: ''
+                    animal_health: 0,
+                    animal_gender: '',
+                    animal_origin: '',
+                    animal_weight: 0,
+                    animal_enclosure_id: 0,
+                    animal_size: 0
                 }
             });
             this.setState({ canEdit: false });
@@ -217,7 +325,7 @@ export default class EditAnimal extends Component {
                                 <div className="form-group row">
                                   <label className="col-sm-2 col-form-label">Health</label>
                                     <div className="col-sm-10">
-                                        <input type="text" className="form-control" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
+                                        <input type="number" className="form-control" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
                                     </div>
                                 </div>
                                 <div className="form-group row">
@@ -226,6 +334,32 @@ export default class EditAnimal extends Component {
                                         <input type="text" className="form-control" value={this.state.animal.animal_gender} onChange={this.handleAnimalGender} placeholder="Enter animal's sex (M or F)" />
                                     </div>
                                 </div>
+                                <div className="form-group row">
+                                  <label className="col-sm-2 col-form-label">Origin</label>
+                                    <div className="col-sm-10">
+                                        <input type="text" className="form-control" value={this.state.animal.animal_origin} onChange={this.handleAnimalOrigin} placeholder="Enter animal's origin" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                  <label className="col-sm-2 col-form-label">Weight</label>
+                                    <div className="col-sm-10">
+                                        <input type="text" className="form-control" value={this.state.animal.animal_weight} onChange={this.handleAnimalWeight} placeholder="Enter animal's weight (lbs)" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                  <label className="col-sm-2 col-form-label">Enclosure ID</label>
+                                    <div className="col-sm-10">
+                                        <input type="text" className="form-control" value={this.state.animal.animal_enclosure_id} onChange={this.handleAnimalEnclosureId} placeholder="Enter animal's enclosure id" />
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                  <label className="col-sm-2 col-form-label">Size</label>
+                                    <div className="col-sm-10">
+                                        <input type="text" className="form-control" value={this.state.animal.animal_size} onChange={this.handleAnimalSize} placeholder="Enter animal's size (S/M/L)" />
+                                    </div>
+                                </div>
+                                
+                                
 
                                 <button type="button" onClick={this.handleSubmit}> Save Changes </button>
 
