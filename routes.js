@@ -67,6 +67,41 @@ router.post('/add', (req, res) => {
     }));
 });
 
+router.post('/add_inventory', (req, res) => {
+    let count;
+    client.get({
+        index: 'inventory',
+        type: 'id_count',
+        id: '2'
+    }, ((err, response) => {
+        if (err) { res.send({success: false }); }
+        else {
+            count = response._source.count + 1;
+            client.index({
+                index: 'inventory',
+                type: 'inventory',
+                id: count,
+                body: req.body
+            }, ((err, response) => {
+                if (err) { res.send({success: false }); }
+                else {
+                    client.index({
+                        index: 'inventory',
+                        type: 'id_count',
+                        id: 2,
+                        body: {
+                            count: count
+                        }
+                    }, ((err, response) => {
+                        if (err) { res.send({ success: false }); }
+                        else { res.send({ success: true }); }
+                    }));
+                }
+            }));
+        }
+    }));
+});
+
 // Checks if the animal document exists in the index
 // If it does send back the animal object to edit
 // Queries the animal index by animal name -> remember each animal gets a unique name
@@ -89,6 +124,10 @@ router.get('/exists', (req, res) => {
         }
     }));
 });
+
+router.get('/exists_inventory', (req, res) => {
+    
+})
 
 // Updates the animal document after the user has edited it
 router.post('/update', (req, res) => {
