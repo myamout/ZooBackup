@@ -10,7 +10,8 @@
     "build": "webpack",
     "build-watch": "webpack -w",
     "seed-mongo": "babel-node --presets es2015,stage-2 db_utils/create_mongo.js",
-    "seed-elastic": "babel-node --presets es2015,stage-2 db_utils/create_elastic.js"
+    "seed-elastic": "babel-node --presets es2015,stage-2 db_utils/create_elastic.js",
+    "seed-elastic2": "babel-node --presets es2015,stage-2 db_utils/create_elastic_inventory.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
