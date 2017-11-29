@@ -1,5 +1,27 @@
 // @import url('../node_modules/searchkit/theming/theme.css');
 
+.animal-img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.animal-card {
+  width: 20rem;
+  margin: 10px;
+}
+
+
+.largeFlexContainer{
+  display: flex;
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  margin: 50 100 50 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
 .largeContainer{
   position: relative;
   z-index: 1;
