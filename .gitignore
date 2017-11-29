@@ -3,3 +3,4 @@ dist/js
 yarn-error.log
 elasticsearch-5.6.3.deb
 kibana-5.6.3-amd64.deb
+data/
