@@ -40,7 +40,7 @@ export default class Home extends Component {
             // ['Elephants',  5]
             CountArray[0] = ['Task', 'Hours per Day'];
             CountArray[1] = ['Tigers',  0];
-            CountArray[2] = ['Grey Wolves',  0];
+            CountArray[2] = ['Gray Wolves',  0];
             CountArray[3] = ['Elephants',  0];
             CountArray[4] = ['Racoons',  0];
             CountArray[5] = ['Alligators',  0];
@@ -50,8 +50,7 @@ export default class Home extends Component {
 
             ChartArray[0] = ['ID', 'Health', 'Age', 'Species'];
             allAnimals.forEach((animal) => {
-            	console.log(animal._source.name + animal._source.animal_type + animal._source.animal_health);
-                let animalArray = [animal._source.name, animal._source.animal_health, animal._source.age, animal._source.animal_type];
+                let animalArray = [animal._source.name, parseInt(animal._source.animal_health), parseInt(animal._source.age), animal._source.animal_type];
                 ChartArray.push(animalArray);
 
 
@@ -79,7 +78,6 @@ export default class Home extends Component {
                 if(animal._source.animal_type == 'Giraffe'){
                     CountArray[8][1]++;
                 }
-
 
                 animal._source.image = "../../media/monkey.jpg";
                 stateArray.push(animal._source);
@@ -223,7 +221,7 @@ export default class Home extends Component {
 									    bold:false,
 									},
 									bubble: {textStyle: {fontSize: 12},stroke:"transparent"},
-									hAxis: {title: 'Life Expectancy'},
+									hAxis: {title: 'Health Rating'},
 									vAxis: {title: 'Age',
 								textPosition: 'in'},
 									legend:{

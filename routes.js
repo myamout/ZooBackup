@@ -246,7 +246,8 @@ router.get('/allAnimals', (req, res) => {
     let query = '_type: animal';
     client.search({
         index: 'animals',
-        q: query
+        q: query,
+        size: 1000
     }, (err, animals) => {
         if (err) { res.send({success: false});}
         if (animals.hits.hits.length === 0) {
@@ -265,7 +266,7 @@ router.get('/allInventory', (req, res) => {
     }, ((err, response) => {
         if (err) {
             res.send({ success: false });
-        } 
+        }
         if (response.hits.hits.length === 0) {
             res.send({ success: false });
         } else {

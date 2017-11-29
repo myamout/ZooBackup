@@ -8,16 +8,17 @@
 .animal-card {
   width: 20rem;
   margin: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 .largeFlexContainer{
   display: flex;
   position: relative;
-  max-width: 800px;
+  max-width: 1250px;
   flex-wrap: wrap;
   z-index: 1;
   background: #FFFFFF;
-  margin: 50 100 50 100px;
+  margin: 50 50 50 50px;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
