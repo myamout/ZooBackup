@@ -1,6 +1,7 @@
 #!/bin/bash
 mkdir -p ./data
-# Starting elastic search with this project's spec
-elasticsearch -Dconfig=`pwd`"/elasticsearch" &
+# Specifying where our elastic search config is
+export ES_PATH_CONF="./elasticsearch/"
+elasticsearch &
 # Data dir in the current dir rather than in the root dir
 mongod --dbpath="./data" &
