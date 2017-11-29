@@ -58,35 +58,52 @@ client.bulk({
     body: [
         { index: { _index: 'animals', _type: 'animal', _id: 1} },
         {
-            name: 'Logan',
+            name: 'Stripey',
             identification: 1,
-            age: 22,
+            age: 3,
             animal_type: 'Tiger',
-            animal_food: 'Meat',
-            animal_health: 5,
-            animal_gender: 'Male',
-            animal_origin: 'India',
-            animal_weight: 200,
-            animal_enclosure_id: 1,
-            animal_size: 'Medium'
+            animal_food: 'Beef',
+            animal_health: 10,
+            animal_gender: 'M',
+            animal_origin: 'Asia',
+            animal_weight: 270,
+            animal_enclosure_id: 0,
+            animal_size: 'M'
         },
         { index: { _index: 'animals', _type: 'animal', _id: 2} },
         {
-            name: 'Steph',
+            name: 'Max',
             identification: 2,
-            age: 22,
+            age: 12,
             animal_type: 'Tiger',
-            animal_food: 'Meat',
-            animal_health: 5,
-            animal_gender: 'Female',
-            animal_origin: 'India',
-            animal_weight: 175,
-            animal_enclosure_id: 1,
-            animal_size: 'Medium'
+            animal_food: 'Beef',
+            animal_health: 4,
+            animal_gender: 'M',
+            animal_origin: 'Asia',
+            animal_weight: 500,
+            animal_enclosure_id: 0,
+            animal_size: 'M'
         },
+        { index: { _index: 'animals', _type: 'animal', _id: 3} },
+        {
+            name: 'Conga',
+            identification: 3,
+            age: 5,
+            animal_type: 'Tiger',
+            animal_food: 'Beef',
+            animal_health: 8,
+            animal_gender: 'F',
+            animal_origin: 'Asia',
+            animal_weight: 280,
+            animal_enclosure_id: 0,
+            animal_size: 'M'
+        },
+
+
+
         { index: { _index: 'animals', _type: 'id_count', _id: 1} },
         {
-            count: 2
+            count: 3
         }
     ]
 }, ((err, response) => {
