@@ -31,6 +31,7 @@ export default class Home extends Component {
             });
             let i = 0;
             let responseData = await response.json();
+            console.log(responseData);
             let allAnimals = responseData.animals;
             let stateArray = [];
             let ChartArray = [];
@@ -55,10 +56,9 @@ export default class Home extends Component {
 
 
                 if(animal._source.animal_type == 'Tiger'){
-                    console.log('test');
                     CountArray[1][1]++;
                 }
-                if(animal._source.animal_type == 'Grey Wolf'){
+                if(animal._source.animal_type == 'Gray Wolf'){
                     CountArray[2][1]++;
                 }
                 if(animal._source.animal_type == 'Elephant'){
@@ -81,7 +81,7 @@ export default class Home extends Component {
                 }
 
 
-                animal._source.image = images[i].img;
+                animal._source.image = "../../media/monkey.jpg";
                 stateArray.push(animal._source);
                 i++;
             });
@@ -152,16 +152,16 @@ export default class Home extends Component {
 						*/
 						<div className="dashboard-container">
 						<div className="dashboard-stats">
-							<div class="stat-group">
-								<div class="dashboard-stat bottom-bar">Youngest Animal: Monkey</div>
-								<div class="dashboard-stat bad-stat">Oldest Animal: Elephant</div>
+							<div className="stat-group">
+								<div className="dashboard-stat bottom-bar">Youngest Animal: Monkey</div>
+								<div className="dashboard-stat bad-stat">Oldest Animal: Elephant</div>
 							</div>
-							<div class="stat-group">
-								<div class="dashboard-stat bottom-bar">Stocked up on:  Beef</div>
-								<div class="dashboard-stat bad-stat">Low on: Berries</div>
+							<div className="stat-group">
+								<div className="dashboard-stat bottom-bar">Stocked up on:  Beef</div>
+								<div className="dashboard-stat bad-stat">Low on: Berries</div>
 							</div>
 						</div>
-							<div class="dashboard-chart-container">
+							<div className="dashboard-chart-container">
 								<Chart
 								className="dashboard-card"
 								chartType="PieChart"
@@ -199,20 +199,20 @@ export default class Home extends Component {
 								>
 								  </Chart>
 								  <div className="chart-center">
-									  <span class="chart-center-title">
+									  <span className="chart-center-title">
 									  	Animals
 									  </span>
-									  <span class="chart-center-subtitle">
+									  <span className="chart-center-subtitle">
 									  	Currently at the Zoo
 									  </span>
 								  </div>
 							</div>
-							<div class="dashboard-chart-container">
+							<div className="dashboard-chart-container">
 								<Chart
 								className="dashboard-card"
 								chartType="BubbleChart"
 								data={
-                                this.state.BubbleChartArray
+                        this.state.BubbleChartArray
 								}
 								options={{
 									chartArea: {'width': '100%', 'height': '82%'},
@@ -241,7 +241,7 @@ export default class Home extends Component {
 								  </Chart>
 							</div>
 
-							<div class="dashboard-chart-container">
+							<div className="dashboard-chart-container">
 								<Chart
 								className="dashboard-card"
 								chartType="BarChart"
