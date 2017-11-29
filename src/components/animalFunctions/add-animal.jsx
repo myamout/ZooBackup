@@ -276,52 +276,65 @@ class Admin extends Component {
         console.log(this.state.animal);
         const err = this.validateSubmit();
         if (!err) {
-
-            // create a json object of the state variable animal
-            const data = JSON.stringify(this.state.animal);
             try {
-                // Inside of this fetch call's options we add
-                // the headers and a body -> body is the json object we just made
-                let response = await fetch('/api/add', {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: data
+                let response = await fetch(`/api/exists?name=${this.state.animal.name}`, {
+                    method: 'get'
                 });
                 let responseData = await response.json();
-                // We'll reset the state so the user can enter another animal
-                this.setState({
-                    animal: {
-                        name: '',
-                        animal_name_error: '',
-                        age: 0,
-                        animal_age_error: '',
-                        animal_type: '',
-                        animal_type_error: '',
-                        animal_food: '',
-                        animal_food_error: '',
-                        animal_health: 0,
-                        animal_health_error: '',
-                        animal_gender: '',
-                        animal_gender_error: '',
-                        animal_origin: '',
-                        animal_origin_error: '',
-                        animal_weight: 0,
-                        animal_weight_error: '',
-                        animal_enclosure_id: 0,
-                        animal_enclosure_id_error: '',
-                        animal_size: '',
-                        animal_size_error: ''
+                if (responseData.success === false) {
+                    // create a json object of the state variable animal
+                    const data = JSON.stringify(this.state.animal);
+                    try {
+                        // Inside of this fetch call's options we add
+                        // the headers and a body -> body is the json object we just made
+                        let response = await fetch('/api/add', {
+                            method: 'post',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: data
+                        });
+                        let responseData = await response.json();
+                        // We'll reset the state so the user can enter another animal
+                        this.setState({
+                            animal: {
+                                name: '',
+                                animal_name_error: '',
+                                age: 0,
+                                animal_age_error: '',
+                                animal_type: '',
+                                animal_type_error: '',
+                                animal_food: '',
+                                animal_food_error: '',
+                                animal_health: 0,
+                                animal_health_error: '',
+                                animal_gender: '',
+                                animal_gender_error: '',
+                                animal_origin: '',
+                                animal_origin_error: '',
+                                animal_weight: 0,
+                                animal_weight_error: '',
+                                animal_enclosure_id: 0,
+                                animal_enclosure_id_error: '',
+                                animal_size: '',
+                                animal_size_error: ''
+                            }
+                        });
+                        this.setState({
+                            form_accepted: true
+                        })
+                    } catch(error) {
+                        console.log(error);
                     }
-                });
-                this.setState({
-                    form_accepted: true
-                })
-            } catch(error) {
+                } else {
+                    this.setState({
+                        form_accepted: false,
+                    })
+                }
+            } catch (error) {
                 console.log(error);
-            }
+            }            
         }
     }
 
@@ -332,7 +345,7 @@ class Admin extends Component {
             isError = true;
             this.state.animal.animal_name_error = 'No name was given.'
         }
-        if (this.state.animal.age == '') {
+        if (this.state.animal.age.length == 0) {
             isError = true;
             this.state.animal.animal_age_error = 'No age was given.'
         }
@@ -344,7 +357,7 @@ class Admin extends Component {
             isError = true;
             this.state.animal.animal_food_error = 'No food was given.'
         }
-        if (this.state.animal.animal_health == '') {
+        if (this.state.animal.animal_health.length == 0) {
             isError = true;
             this.state.animal.animal_health_error = 'No health was given.'
         }
@@ -356,11 +369,11 @@ class Admin extends Component {
             isError = true;
             this.state.animal.animal_origin_error = 'No origin was given.';
         }
-        if (this.state.animal.animal_weight == '') {
+        if (this.state.animal.animal_weight.length == 0) {
             isError = true;
             this.state.animal.animal_weight_error = 'No weight was given.';
         }
-        if (this.state.animal.animal_enclosure_id == '') {
+        if (this.state.animal.animal_enclosure_id.length == 0) {
             isError = true;
             this.state.animal.animal_enclosure_id_error = 'No enclosure id was given.';
         }
@@ -382,7 +395,6 @@ class Admin extends Component {
         // Notice each input component has a value and an onChange field that links to a state
         // variable and function
         // The button has an onClick field that will call the function that adds the animal to the database
-        console.log(this.state.animal.animal_name_error);
         let animal_name = <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Name</label>
                 <div className="col-sm-10">
