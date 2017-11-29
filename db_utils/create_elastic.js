@@ -192,6 +192,23 @@ client.bulk({
             animal_enclosure_id: 1,
             animal_size: 'M'
         },
+        { index: { _index: 'animals', _type: 'animal', _id: 3} },
+        {
+            name: 'Conga',
+            identification: 3,
+            age: 5,
+            animal_type: 'Tiger',
+            animal_food: 'Beef',
+            animal_health: 8,
+            animal_gender: 'F',
+            animal_origin: 'Asia',
+            animal_weight: 280,
+            animal_enclosure_id: 0,
+            animal_size: 'M'
+        },
+
+
+
         { index: { _index: 'animals', _type: 'id_count', _id: 1} },
         {
             count: 9
