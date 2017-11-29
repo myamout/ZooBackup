@@ -143,7 +143,7 @@ export default class Home extends Component {
 									    bold:false,
 									},
 									bubble: {textStyle: {fontSize: 12},stroke:"transparent"},
-									hAxis: {title: 'Life Expectancy'},
+									hAxis: {title: 'Food Quanity'},
 									vAxis: {textPosition: 'in',stroke:'transparent'},
 									legend:{
 										textStyle: {
