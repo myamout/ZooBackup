@@ -124,16 +124,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dashboard-chart-container{
-  width: 560px;
-  border-radius:2px;
-  max-width:97%;
-  min-height:250px;
-  background-color:#ffffff;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  margin:8px;
-  padding:8px;
-}
 
 .dashboard-container{
   display:flex;
@@ -145,4 +135,35 @@ body {
 }
 
 
+.dashboard-chart-container{
+  min-width: 625px;
+  border-radius:2px;
+  max-width:97%;
+  min-height:250px;
+  background-color:#ffffff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin:8px;
+  padding:8px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
+.chart-center{
+  position:absolute;
+  left:21.75%;
+  font-size:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.chart-center-title{
+}
+
+.chart-center-subtitle{
+  color:#666;
+  font-size:12px;
+}

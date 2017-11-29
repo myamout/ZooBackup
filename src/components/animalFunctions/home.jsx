@@ -32,19 +32,32 @@ export default class Home extends Component {
 								['Davids',    7]]
 								}
 								options={{
-								pieHole: 0.1,
-								pieSliceTextStyle: {
-								color: 'black',
-								},
-								title:"Zoo Animals",
-								chartArea: {'width': '100%', 'height': '80%'},
+									pieHole: 0.5,
+									pieSliceTextStyle: {
+									color: 'black',
+									},
+									chartArea: {'width': '100%', 'height': '82%'},
+									pieSliceBorderColor: "none",
+									titleTextStyle: {
+									    color: "#424242",
+									    fontName: "verdana",
+									    fontSize: 22,
+									}
 								}}
 								graph_id="OtherPieChart"
 								width="100%"
-								height="300px"
-								margin="8px"
+								height="400px"
 								legend_toggle
-								/>
+								>
+								  </Chart>
+								  <div className="chart-center">
+									  <span class="chart-center-title">
+									  	Animals
+									  </span>
+									  <span class="chart-center-subtitle">
+									  	Currently at the Zoo
+									  </span>
+								  </div>
 							</div>
 					
 					</div>
