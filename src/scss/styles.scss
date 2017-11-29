@@ -10,7 +10,6 @@
   margin: 10px;
 }
 
-
 .largeFlexContainer{
   display: flex;
   position: relative;
@@ -26,8 +25,8 @@
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  margin: 50 100 50 100px;
-  padding: 45px;
+  margin: 75 100 75 100px;
+  padding: 20 45 20 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -48,8 +47,8 @@
   outline: 0;
   background: #f2f2f2 !important;
   width: 100%;
-  margin: 0 0 15px;
-  padding: 15px;
+  margin: 0 0 1px;
+  padding: 10px;
   box-sizing: inherit !important;
   font-size: 14px;
 }
@@ -70,6 +69,50 @@ width: 75px;
   color: white;
   text-decoration: none;
   background-color:#666666;
+}
+
+.buttonSpacer{
+  margin-top: 20px;
+}
+
+.middlespacer{
+  margin-right: 60px;
+}
+
+.filterContainer{
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  margin: 40 100 -50 100px;
+  padding: 20 45 20 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.filterContainer button {
+  text-transform: uppercase;
+  background: white;
+  color: black;
+  cursor: pointer;
+}
+
+@media(max-width: 850px){
+  .btn-group {
+    display: block !important;
+    width: auto !important;
+  }
+}
+
+.filterContainer button:hover {
+  text-transform: uppercase;
+  background: #43A047;
+  color: white;
+  cursor: pointer;
+}
+
+th {
+  color: white;
+  background:#43A047;
 }
 
 button {
@@ -100,4 +143,48 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.dashboard-container{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:16px;
+  font-family:verdana, sans-serif;
+}
+
+
+.dashboard-chart-container{
+  min-width: 625px;
+  border-radius:2px;
+  max-width:97%;
+  min-height:250px;
+  background-color:#ffffff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin:8px;
+  padding:8px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.chart-center{
+  position:absolute;
+  left:21.75%;
+  font-size:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.chart-center-title{
+}
+
+.chart-center-subtitle{
+  color:#666;
+  font-size:12px;
 }

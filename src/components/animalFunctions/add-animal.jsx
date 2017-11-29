@@ -8,7 +8,7 @@ export default class AddAnimal extends Component {
         // Think of Repository Software Architecture :)
         this.state = {
             permissions: 0,
-            form_accepted: false
+            form_accepted: ''
         };
 
     }
@@ -31,7 +31,7 @@ export default class AddAnimal extends Component {
             this.setState({
                 permissions: responseData.permissions
             });
-            console.log(this.state.permissions);
+            // console.log(this.state.permissions);
         } catch (error) {
             console.log(error);
         }
@@ -66,10 +66,18 @@ class Admin extends Component {
                 animal_type_error: '',
                 animal_food: '',
                 animal_food_error: '',
-                animal_health: '',
+                animal_health: 0,
                 animal_health_error: '',
                 animal_gender: '',
                 animal_gender_error: '',
+                animal_origin: '',
+                animal_origin_error: '',
+                animal_weight: 0,
+                animal_weight_error: '',
+                animal_enclosure_id: 0,
+                animal_enclosure_id_error: '',
+                animal_size: '',
+                animal_size_error: ''
             }
         };
         // Whenever we want to manipulate the state inside of a function
@@ -80,6 +88,10 @@ class Admin extends Component {
         this.handleAnimalFood = this.handleAnimalFood.bind(this);
         this.handleAnimalHealth = this.handleAnimalHealth.bind(this);
         this.handleAnimalGender = this.handleAnimalGender.bind(this);
+        this.handleAnimalOrigin = this.handleAnimalOrigin.bind(this);
+        this.handleAnimalWeight = this.handleAnimalWeight.bind(this);
+        this.handleAnimalEnclosureId = this.handleAnimalEnclosureId.bind(this);
+        this.handleAnimalSize = this.handleAnimalSize.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -96,7 +108,11 @@ class Admin extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -109,7 +125,11 @@ class Admin extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -122,7 +142,11 @@ class Admin extends Component {
                 animal_type: event.target.value,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -135,7 +159,11 @@ class Admin extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: event.target.value,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -148,7 +176,11 @@ class Admin extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: event.target.value,
-                animal_gender: this.state.animal.animal_gender
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
             }
         });
     }
@@ -160,7 +192,79 @@ class Admin extends Component {
                 animal_type: this.state.animal.animal_type,
                 animal_food: this.state.animal.animal_food,
                 animal_health: this.state.animal.animal_health,
-                animal_gender: event.target.value
+                animal_gender: event.target.value,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalOrigin(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: event.target.value,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalWeight(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: event.target.value,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalEnclosureId(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: event.target.value,
+                animal_size: this.state.animal.animal_size
+            }
+        });
+    }
+
+    handleAnimalSize(event) {
+        this.setState({
+            animal: {
+                name: this.state.animal.name,
+                age: this.state.animal.age,
+                animal_type: this.state.animal.animal_type,
+                animal_food: this.state.animal.animal_food,
+                animal_health: this.state.animal.animal_health,
+                animal_gender: this.state.animal.animal_gender,
+                animal_origin: this.state.animal.animal_origin,
+                animal_weight: this.state.animal.animal_weight,
+                animal_enclosure_id: this.state.animal.animal_enclosure_id,
+                animal_size: event.target.value
             }
         });
     }
@@ -170,54 +274,74 @@ class Admin extends Component {
         // event.preventDefault prevents a page refresh
         event.preventDefault();
         console.log(this.state.animal);
-        const err = this.validate();
+        const err = this.validateSubmit();
         if (!err) {
-
-            // create a json object of the state variable animal
-            const data = JSON.stringify(this.state.animal);
             try {
-                // Inside of this fetch call's options we add
-                // the headers and a body -> body is the json object we just made
-                let response = await fetch('/api/add', {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: data
+                let response = await fetch(`/api/exists?name=${this.state.animal.name}`, {
+                    method: 'get'
                 });
                 let responseData = await response.json();
-                // We'll reset the state so the user can enter another animal
-                this.setState({
-                    animal: {
-                        name: '',
-                        animal_name_error: '',
-                        age: 0,
-                        animal_age_error: '',
-                        animal_type: '',
-                        animal_type_error: '',
-                        animal_food: '',
-                        animal_food_error: '',
-                        animal_health: '',
-                        animal_health_error: '',
-                        animal_gender: '',
-                        animal_gender_error: ''
+                if (responseData.success === false) {
+                    // create a json object of the state variable animal
+                    const data = JSON.stringify(this.state.animal);
+                    try {
+                        // Inside of this fetch call's options we add
+                        // the headers and a body -> body is the json object we just made
+                        let response = await fetch('/api/add', {
+                            method: 'post',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: data
+                        });
+                        let responseData = await response.json();
+                        // We'll reset the state so the user can enter another animal
+                        this.setState({
+                            animal: {
+                                name: '',
+                                animal_name_error: '',
+                                age: 0,
+                                animal_age_error: '',
+                                animal_type: '',
+                                animal_type_error: '',
+                                animal_food: '',
+                                animal_food_error: '',
+                                animal_health: 0,
+                                animal_health_error: '',
+                                animal_gender: '',
+                                animal_gender_error: '',
+                                animal_origin: '',
+                                animal_origin_error: '',
+                                animal_weight: 0,
+                                animal_weight_error: '',
+                                animal_enclosure_id: 0,
+                                animal_enclosure_id_error: '',
+                                animal_size: '',
+                                animal_size_error: ''
+                            }
+                        });
+                        this.setState({
+                            form_accepted: true
+                        })
+                    } catch(error) {
+                        console.log(error);
                     }
-                });
-                this.setState({
-                    form_accepted: true
-                })
-            } catch(error) {
+                } else {
+                    this.setState({
+                        form_accepted: false,
+                    })
+                }
+            } catch (error) {
                 console.log(error);
-            }
+            }            
         }
     }
 
-    validate = () => {
+    validateSubmit = () => {
         let isError = false;
-        const errors = {};
 
-        if (this.state.animal.name == '') {
+        if (this.state.animal.name.trim().length == 0) {
             isError = true;
             this.state.animal.animal_name_error = 'No name was given.'
         }
@@ -225,29 +349,46 @@ class Admin extends Component {
             isError = true;
             this.state.animal.animal_age_error = 'No age was given.'
         }
-        if (this.state.animal.animal_type == '') {
+        if (this.state.animal.animal_type.trim().length == 0) {
             isError = true;
             this.state.animal.animal_type_error = 'No species was given.'
         }
-        if (this.state.animal.animal_food == '') {
+        if (this.state.animal.animal_food.trim().length == 0) {
             isError = true;
             this.state.animal.animal_food_error = 'No food was given.'
         }
-        if (this.state.animal.animal_health == '') {
+        if (this.state.animal.animal_health.length == 0) {
             isError = true;
             this.state.animal.animal_health_error = 'No health was given.'
         }
-        if (this.state.animal.animal_gender == '') {
+        if (this.state.animal.animal_gender.trim().length == 0) {
             isError = true;
             this.state.animal.animal_gender_error = 'No gender was given.';
+        }
+        if (this.state.animal.animal_origin.trim().length == 0) {
+            isError = true;
+            this.state.animal.animal_origin_error = 'No origin was given.';
+        }
+        if (this.state.animal.animal_weight.length == 0) {
+            isError = true;
+            this.state.animal.animal_weight_error = 'No weight was given.';
+        }
+        if (this.state.animal.animal_enclosure_id.length == 0) {
+            isError = true;
+            this.state.animal.animal_enclosure_id_error = 'No enclosure id was given.';
+        }
+        if (this.state.animal.animal_size.trim().length == 0) {
+            isError = true;
+            this.state.animal.animal_size_error = 'No size (S/M/L) was given.';
         }
 
         this.setState({
             ...this.state
         });
 
-        return isError
+        return isError;
     }
+
 
     render() {
         // This is what gets rendered to the dom
@@ -326,17 +467,17 @@ class Admin extends Component {
 
 
         let animal_health = <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Health</label>
+                <label className="col-sm-2 col-form-label">Health Rating</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
+                    <input type="number" className="form-control" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health" />
                 </div>
             </div>
 
         if (this.state.animal.animal_health_error) {
             animal_health = <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Health</label>
+                <label className="col-sm-2 col-form-label">Health Rating</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health." />
+                    <input type="number" className="form-control is-invalid" value={this.state.animal.animal_health} onChange={this.handleAnimalHealth} placeholder="Enter animal's health." />
                     <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_health_error}</span>
                 </div>
             </div>
@@ -359,11 +500,84 @@ class Admin extends Component {
             </div>
         }
 
+        let animal_origin = <div className="form-group row">
+            <label className="col-sm-2 col-form-label">Origin</label>
+            <div className="col-sm-10">
+                <input type="text" className="form-control" value={this.state.animal.animal_origin} onChange={this.handleAnimalOrigin} placeholder="Enter animal's origin" />
+            </div>
+        </div>
+
+        if (this.state.animal.animal_origin_error) {
+            animal_origin = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Origin</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_origin} onChange={this.handleAnimalOrigin} placeholder="Enter animal's origin" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_origin_error}</span>
+                </div>
+            </div>
+        }
+
+        let animal_weight = <div className="form-group row">
+            <label className="col-sm-2 col-form-label">Weight (lbs)</label>
+            <div className="col-sm-10">
+                <input type="text" className="form-control" value={this.state.animal.animal_weight} onChange={this.handleAnimalWeight} placeholder="Enter animal's weight (lbs)" />
+            </div>
+        </div>
+
+        if (this.state.animal.animal_weight_error) {
+            animal_weight = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Weight (lbs)</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_weight} onChange={this.handleAnimalWeight} placeholder="Enter animal's weight (lbs)" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_weight_error}</span>
+                </div>
+            </div>
+        }
+
+        let animal_enclosure_id = <div className="form-group row">
+            <label className="col-sm-2 col-form-label">Enclosure ID</label>
+            <div className="col-sm-10">
+                <input type="text" className="form-control" value={this.state.animal.animal_enclosure_id} onChange={this.handleAnimalEnclosureId} placeholder="Enter animal's enclosure id" />
+            </div>
+        </div>
+
+        if (this.state.animal.animal_enclosure_id_error) {
+            animal_enclosure_id = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Enclosure ID</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_enclosure_id} onChange={this.handleAnimalEnclosureId} placeholder="Enter animal's enclosure id" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_enclosure_id_error}</span>
+                </div>
+            </div>
+        }
+
+        let animal_size = <div className="form-group row">
+            <label className="col-sm-2 col-form-label">Animal's Size (S/M/L)</label>
+            <div className="col-sm-10">
+                <input type="text" className="form-control" value={this.state.animal.animal_size} onChange={this.handleAnimalSize} placeholder="Enter animal's size (S/M/L)" />
+            </div>
+        </div>
+
+        if (this.state.animal.animal_size_error) {
+            animal_size = <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Animal's Size (S/M/L)</label>
+                <div className="col-sm-10">
+                    <input type="text" className="form-control is-invalid" value={this.state.animal.animal_size} onChange={this.handleAnimalSize} placeholder="Enter animal's size (S/M/L)" />
+                    <span style={{color: "#dc3545", textAlign: "left"}}>{this.state.animal.animal_size_error}</span>
+                </div>
+            </div>
+        }
+
         let added_animal;
 
-        if (this.state.form_accepted) {
-            added_animal = <div class="alert alert-success" role="alert">
+        if (this.state.form_accepted === true) {
+            added_animal = <div className="alert alert-success" role="alert">
                 An animal was successfully added to the zoo!
+            </div>
+            window.scrollTo(0, 0);
+        } else if (this.state.form_accepted === false) {
+            added_animal = <div className="alert alert-warning" role="alert">
+                An animal with that name already exists!
             </div>
             window.scrollTo(0, 0);
         }
@@ -374,18 +588,16 @@ class Admin extends Component {
                     <h2> Add Animal </h2>
                     <hr></hr>
                     {added_animal}
-
                     {animal_name}
-
                     {animal_age}
-
                     {animal_type}
-
                     {animal_food}
-
                     {animal_health}
-
                     {animal_gender}
+                    {animal_origin}
+                    {animal_weight}
+                    {animal_enclosure_id}
+                    {animal_size}
 
                     <button type="button" onClick={this.handleSubmit}> Add Animal </button>
 

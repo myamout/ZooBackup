@@ -28,7 +28,8 @@
 2. Install Elasticsearch debain by running: `dpkg -i elasticsearch-5.2.0.deb`
 3. Start Elasticsearch by running: `sudo -i service elasticsearch start`
 4. Seed Elasticsearch cluster node by running: `yarn seed-elastic`
-5. Stop Elasticsearch by running: `sudo -i service elasticsearch stop`
+5. Seed the Inventory index by running: `yarn seed-elastic2`
+6. Stop Elasticsearch by running: `sudo -i service elasticsearch stop`
 
 # Install and Setup Elasticsearch - MacOS
 1. Run the command `brew install elasticsearch`

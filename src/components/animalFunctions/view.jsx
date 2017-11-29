@@ -12,6 +12,8 @@ export default class View extends Component {
         this.handleNameSort = this.handleNameSort.bind(this);
         this.handleAgeSort = this.handleAgeSort.bind(this);
         this.handleGenderSort = this.handleGenderSort.bind(this);
+        this.handleOriginSort = this.handleOriginSort.bind(this);
+        this.handleWeightSort = this.handleWeightSort.bind(this);
 
         // Filters
         this.handleGenderFilter = this.handleGenderFilter.bind(this);
@@ -87,6 +89,36 @@ export default class View extends Component {
         });
     }
 
+    handleOriginSort(event) {
+        event.preventDefault();
+        let currentAnimals = this.state.animals;
+        currentAnimals.sort((a, b) => {
+            let originA = a.animal_origin;
+            let originB = b.animal_origin;
+            if (originA > originB) { return 1; }
+            if (originA < originB) { return -1; }
+            return 0;
+        });
+        this.setState({
+            animals: currentAnimals
+        });
+    }
+
+    handleWeightSort(event) {
+        event.preventDefault();
+        let currentAnimals = this.state.animals;
+        currentAnimals.sort((a, b) => {
+            let weightA = a.animal_weight;
+            let weightB = b.animal_weight;
+            if (weightA > weightB) { return 1; }
+            if (weightA < weightB) { return -1; }
+            return 0;
+        });
+        this.setState({
+            animals: currentAnimals
+        });
+    }
+
     handleGenderFilter(event) {
         event.preventDefault();
         let currentAnimals = this.state.animals;
@@ -104,49 +136,61 @@ export default class View extends Component {
     render() {
         let tableBody = this.state.animals.map((animal) => {
             return(
-                <tr key={animal.name}> 
+                <tr key={animal.name}>
                     <td> {animal.name} </td>
                     <td> {animal.age} </td>
                     <td> {animal.animal_type} </td>
                     <td> {animal.animal_food} </td>
                     <td> {animal.animal_health} </td>
                     <td> {animal.animal_gender} </td>
+                    <td> {animal.animal_origin} </td>
+                    <td> {animal.animal_weight} </td>
+                    <td> {animal.animal_enclosure_id} </td>
+                    <td> {animal.animal_size} </td>
                 </tr>
             );
         });
         return(
-          <div> 
-              <div className="largeContainer">
-                <div className="btn-group" role="group" aria-label="Sorts">
+          <div>
+              <div className="filterContainer">
+                <div className="btn-group middlespacer" role="group" aria-label="Sorts">
                     <button type="button" className="btn btn-secondary" onClick={this.handleNameSort}>Sort By Name</button>
                     <button type="button" className="btn btn-secondary" onClick={this.handleAgeSort}>Sort By Age</button>
                     <button type="button" className="btn btn-secondary" onClick={this.handleGenderSort}>Sort By Gender</button>
+                    <button type="button" className="btn btn-secondary" onClick={this.handleOriginSort}>Sort By Origin</button>
+                    <button type="button" className="btn btn-secondary" onClick={this.handleWeightSort}>Sort By Weight</button>
                     <button type="button" className="btn btn-secondary" onClick={this.handleGetAllAnimals}> Reset Sort </button>
                 </div>
+
                 <div className="btn-group" role="group" aria-label="Sorts">
                     <button type="button" className="btn btn-secondary" onClick={this.handleGenderFilter}>Filter By Gender Male</button>
                     <button type="button" className="btn btn-secondary" onClick={this.handleGetAllAnimals}>Reset Filters</button>
                 </div>
             </div>
-            <div className="largeContainer"> 
-                <table> 
+            <div className="largeContainer">
+                <div className="table-responsive">
+                <table className="table table-bordered table-striped">
                     <thead>
-                        <tr> 
+                        <tr>
                             <th> Name </th>
                             <th> Age </th>
                             <th> Animal </th>
                             <th> Food </th>
                             <th> Health </th>
                             <th> Gender </th>
+                            <th> Origin </th>
+                            <th> Weight </th>
+                            <th> Enclosure ID </th>
+                            <th> Size </th>
                         </tr>
                     </thead>
-                    <tbody> 
+                    <tbody>
                         {tableBody}
                     </tbody>
                 </table>
+                </div>
             </div>
           </div>
-        )
+        );
     }
 }
-
