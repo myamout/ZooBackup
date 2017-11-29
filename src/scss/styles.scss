@@ -123,3 +123,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.dashboard-card{
+  width: 560px;
+  border-radius:2px;
+  max-width:97%;
+  background-color:#fafafa;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.dashboard-card h1{
+  font-weight:lighter;
+  font-size:25px;
+  padding: 4px;
+  border-bottom:1px solid #ddd;
+}
+.dashboard-card div{
+  padding:4px;
+}
+.dashboard-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:16px;
+  font-family:verdana, sans-serif;
+}
+
+
+
