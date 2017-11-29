@@ -7,4 +7,4 @@ require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 // require('../node_modules/bootstrap/dist/css/bootstrap-grid.min.css');
 // require('../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css');
 // require('../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
-require('../node_modules/react-google-charts/index.js');
+// require('../node_modules/react-google-charts/index.js');

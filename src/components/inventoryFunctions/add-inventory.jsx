@@ -8,7 +8,7 @@ export default class AddInventory extends Component {
         // Think of Repository Software Architecture :)
         this.state = {
             permissions: 0,
-            form_accepted: false
+            form_accepted: ''
         };
 
     }
@@ -117,36 +117,55 @@ class Admin extends Component {
         console.log(this.state.item);
         const err = this.validate();
         if (!err) {
-
-            // create a json object of the state variable animal
-            const data = JSON.stringify(this.state.item);
             try {
-                // Inside of this fetch call's options we add
-                // the headers and a body -> body is the json object we just made
-                let response = await fetch('/api/add_inventory', {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: data
+                let response = await fetch(`/api/exists_inventory?food_type=${this.state.food_type}`, {
+                    method: 'get'
                 });
                 let responseData = await response.json();
-                // We'll reset the state so the user can enter another animal
-                this.setState({
-                    item: {
-                        food_type: '',
-                        food_amount: 0,
-                        location: '',
-                        food_type_error: '',
-                        food_amount_error: '',
-                        location_error: ''
+
+                console.log(responseData);
+
+                if (responseData.success === true) {
+                    this.setState({
+                        form_accepted: false,
+                    });
+                } else {
+
+                    if (responseData.success === false) {
+                        // create a json object of the state variable animal
+                        const data = JSON.stringify(this.state.item);
+                        try {
+                            // Inside of this fetch call's options we add
+                            // the headers and a body -> body is the json object we just made
+                            let response = await fetch('/api/add_inventory', {
+                                method: 'post',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: data
+                            });
+                            let responseData = await response.json();
+                            // We'll reset the state so the user can enter another animal
+                            this.setState({
+                                item: {
+                                    food_type: '',
+                                    food_amount: 0,
+                                    location: '',
+                                    food_type_error: '',
+                                    food_amount_error: '',
+                                    location_error: ''
+                                }
+                            });
+                            this.setState({
+                                form_accepted: true
+                            })
+                        } catch(error) {
+                            console.log(error);
+                        }
                     }
-                });
-                this.setState({
-                    form_accepted: true
-                })
-            } catch(error) {
+                }
+            } catch (error) {
                 console.log(error);
             }
         }
@@ -155,8 +174,7 @@ class Admin extends Component {
     validate = () => {
         let isError = false;
         const errors = {};
-
-        if (this.state.item.food_type == '') {
+        if (this.state.item.food_type.trim().length == 0) {
             isError = true;
             this.state.item.food_type_error = 'No food type was given.'
         }
@@ -164,7 +182,7 @@ class Admin extends Component {
             isError = true;
             this.state.item.food_amount_error = 'No food amount was given.'
         }
-        if (this.state.item.location == '') {
+        if (this.state.item.location.trim().length == 0) {
             isError = true;
             this.state.item.location_error = 'No storage location was given.'
         }
@@ -234,9 +252,14 @@ class Admin extends Component {
 
         let added_item;
 
-        if (this.state.form_accepted) {
-            added_item = <div class="alert alert-success" role="alert">
+        if (this.state.form_accepted === true) {
+            added_item = <div className="alert alert-success" role="alert">
                 Item was successfully added to Zoo's inventory
+            </div>
+            window.scrollTo(0, 0);
+        } else if (this.state.form_accepted === false) {
+            added_item = <div className="alert alert-warning" role="alert">
+                An item with that name already exists!
             </div>
             window.scrollTo(0, 0);
         }

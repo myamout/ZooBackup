@@ -126,21 +126,21 @@ router.get('/exists', (req, res) => {
 });
 
 router.get('/exists_inventory', (req, res) => {
-     const query = 'food_type:'+req['query']['food_type'];
-     client.search({
-         index: 'inventory',
-         q: query
-     }, ((err, response) => {
-         if (err) { res.send({ success: false }); }
-         if (response.hits.hits.length === 0) {
-             res.send({ success: false });
-         } else {
-             res.send({
-                 success: true,
-                 item: response.hits.hits[0]._source
-             });
-         }
-     }));
+    const query = 'food_type:'+req['query']['food_type'];
+    client.search({
+        index: 'inventory',
+        q: query
+    }, ((err, response) => {
+        if (err) { res.send({ success: false }); }
+        if (response.hits.hits.length === 0) {
+            res.send({ success: false });
+        } else {
+            res.send({
+                success: true,
+                item: response.hits.hits[0]._source
+            });
+        }
+    }));
 });
 
 // Updates the animal document after the user has edited it

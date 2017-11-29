@@ -22,22 +22,23 @@ export const Header = () => (
               <a className="nav-link"> <Link to='/viewAnimals'> View Animals </Link> </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link"> <Link to='/viewInventory'> View Inventory </Link> </a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link"> <Link to='/addAnimal'> Add Animal </Link> </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link"> <Link to='/addInventory'> Add Item </Link> </a>
             </li>
             <li className="nav-item">
               <a className="nav-link active"> <Link to='/editAnimal'> Edit Animal </Link> </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active"> <Link to='/editInventory'> Edit Item </Link> </a>
+              <a className="nav-link"> <Link to='/deleteAnimal'> Delete Animal </Link> </a>
+            </li>
+
+            <li className="nav-item">
+              <a className="nav-link"> <Link to='/viewInventory'> View Inventory </Link> </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link"> <Link to='/deleteAnimal'> Delete Animal </Link> </a>
+              <a className="nav-link"> <Link to='/addInventory'> Add Item </Link> </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active"> <Link to='/editInventory'> Edit Item </Link> </a>
             </li>
             <li className="nav-item">
               <a className="nav-link"> <Link to='/deleteInventory'> Delete Item </Link> </a>
