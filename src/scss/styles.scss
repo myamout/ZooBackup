@@ -37,7 +37,9 @@ margin-left: -7px !important;
 margin-right: 10px;
 width: 75px;
 }
-
+.navbar{
+  background-color: #333;
+}
 .navbar a {
   font-weight: bold;
   color: white;
@@ -135,17 +137,17 @@ body {
   background-color:rgb(240,240,241);
   width:100%;
   height:100%;
+  overflow-y:scroll;
 }
 
 
 .dashboard-chart-container{
-  min-width: 675px;
+  min-width: 665px;
   border-radius:2px;
   max-width:97%;
-  min-height:250px;
   background-color:#ffffff;
   box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.17);
-  margin:4px;
+  margin:16px;
   padding:8px;
   position:relative;
   display:flex;
@@ -158,9 +160,54 @@ body {
 
 }
 
+
+.dashboard-stats{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  max-width:97%;
+  margin:16px;
+  padding:8px;
+  background-color:transparent;
+  align-self:center;
+  padding:0px;
+}
+
+.stat-group{
+  margin:8px;
+  border-radius:3px;
+  min-width:500px;
+  background-color: transparent;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.17);
+  border: 3px solid #fff;
+}
+.bottom-bar{
+  border-bottom: 3px solid #fff;
+}
+
+.stat-group:hover{
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08), 0 3px 8px rgba(0,0,0,0.17);
+}
+
+.dashboard-stat{
+  font-weight:lighter;
+  font-size:25px;
+  padding: 4px;
+  width:100%;
+  height:50px;
+  background-color:#76b852;
+  color:white;
+  margin:0;
+}
+
+.bad-stat{
+  background-color:#333;
+}
+
 .chart-center{
   position:absolute;
-  left:22.75%;
+  left:22.25%;
   font-size:18px;
   display:flex;
   flex-direction:column;
