@@ -13,7 +13,7 @@ let CrudOperations = {
             username: username,
             password: pass
         };
-        return User.find(query);
+        return User.findOne(query);
     }
 };
 

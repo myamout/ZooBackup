@@ -1,4 +1,4 @@
 #!/bin/bash
-yarn seed-mongo
-yarn seed-elastic
-yarn seed-elastic2
+yarn seed-mongo;
+yarn seed-elastic;
+yarn seed-elastic2;

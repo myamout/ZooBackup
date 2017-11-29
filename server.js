@@ -72,10 +72,10 @@ app.post('/login', (req, res, next) => {
     userQuery.exec((err, user) => {
         // "user" is an array, if the length is one
         // then the user exists in our database
-        if (user.length === 1) {
+        if (user) {
             // set the user's session to authenticated
             req.session.authenticated = true;
-            userPermissions = user[0].permissions;
+            userPermissions = user.permissions;
             // redirect the user to "localhost:8080/user"
             res.redirect('/user');
         } else {
