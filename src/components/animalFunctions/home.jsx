@@ -42,9 +42,20 @@ export default class Home extends Component {
 									    color: "#424242",
 									    fontName: "verdana",
 									    fontSize: 22,
-									}
+									},
+									pieSliceTextStyle: {
+							          color: 'white',
+							          fontName: "verdana"
+							        },
+									legend:{
+										alignment:"center",
+										textStyle: {
+											color: '#666',
+											fontSize: 14
+										}
+									},
 								}}
-								graph_id="OtherPieChart"
+								graph_id="PieChart"
 								width="100%"
 								height="400px"
 								legend_toggle
@@ -59,6 +70,48 @@ export default class Home extends Component {
 									  </span>
 								  </div>
 							</div>
+							<div class="dashboard-chart-container">
+								<Chart
+								className="dashboard-card"
+								chartType="BubbleChart"
+								data={[
+							        ['ID', 'Life Expectancy', 'Fertility Rate', 'Species'],
+							        ['Logan',    80.66,              1.67,      'Pidgeon'],
+							        ['Michael',    79.84,              1.36,      'Emu'],
+							        ['David',    78.6,               1.84,      'Dolphin'],
+							        ['Matt',    80.05,              2,         'Camel'],
+							        ['Vaso',    78.09,              2.05,      'Seal'],
+							        ['Arzoo',    78.09, 2.05,'Organtan']
+
+							      ]
+								}
+								options={{
+									chartArea: {'width': '100%', 'height': '82%'},
+									title:"Animal Health",
+									titleTextStyle: {
+									    fontName: "verdana",
+									    fontSize: 22,
+									    bold:false,
+									},
+									bubble: {textStyle: {fontSize: 12},stroke:"transparent"},
+									hAxis: {title: 'Life Expectancy'},
+									vAxis: {title: 'Fertility Rate'},
+									legend:{
+										alignment:"center",
+										textStyle: {
+											color: '#666',
+											fontSize: 14
+										}
+									},
+								}}
+								graph_id="AnimalSex"
+								width="100%"
+								height="400px"
+								legend_toggle
+								>
+								  </Chart>
+							</div>
+
 					
 					</div>
 					);
